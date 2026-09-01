@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxuryForHer – Exklusive Geschenkideen für Frauen</title>
+    <meta name="description" content="Entdecke handverlesene Geschenkideen für Frauen. Von luxuriöser Schmuckkunst bis hin zu personalisierten Erlebnissen – finde das perfekte Geschenk für sie.">
+    <meta name="keywords" content="Geschenke für Frauen, Luxus Geschenke, Geschenkideen, Valentinstag, Geburtstag, Weihnachten">
+    <meta property="og:title" content="LuxuryForHer – Exklusive Geschenkideen für Frauen">
+    <meta property="og:description" content="Handverlesene Geschenkideen für die besonderen Frauen in deinem Leben.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/avatars.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
+</head>
+<body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>✨ Kostenloser Versand ab 75€ · 5% Rabatt mit Newsletter-Anmeldung ✨</p>
+    </div>
+
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav__logo">
+                <span class="logo-icon">♦</span>
+                <span class="logo-text">Luxury<em>ForHer</em></span>
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#kategorien" class="nav__link">Geschenkideen <span class="dropdown-arrow">▾</span></a>
+                        <div class="dropdown">
+                            <div class="dropdown__grid">
+                                <div class="dropdown__column">
+                                    <h4>Nach Anlass</h4>
+                                    <a href="pages/kategorie.html?cat=valentinstag">Valentinstag</a>
+                                    <a href="pages/kategorie.html?cat=geburtstag">Geburtstag</a>
+                                    <a href="pages/kategorie.html?cat=weihnachten">Weihnachten</a>
+                                    <a href="pages/kategorie.html?cat=jahrestag">Jahrestag</a>
+                                    <a href="pages/kategorie.html?cat=muttertag">Muttertag</a>
+                                </div>
+                                <div class="dropdown__column">
+                                    <h4>Nach Kategorie</h4>
+                                    <a href="pages/kategorie.html?cat=schmuck">Schmuck & Accessoires</a>
+                                    <a href="pages/kategorie.html?cat=beauty">Beauty & Wellness</a>
+                                    <a href="pages/kategorie.html?cat=mode">Mode & Fashion</a>
+                                    <a href="pages/kategorie.html?cat=erlebnisse">Erlebnisse</a>
+                                    <a href="pages/kategorie.html?cat=tech">Tech & Gadgets</a>
+                                </div>
+                                <div class="dropdown__column">
+                                    <h4>Nach Budget</h4>
+                                    <a href="pages/kategorie.html?cat=unter50">Unter 50€</a>
+                                    <a href="pages/kategorie.html?cat=50-150">50€ – 150€</a>
+                                    <a href="pages/kategorie.html?cat=150-500">150€ – 500€</a>
+                                    <a href="pages/kategorie.html?cat=luxus">Luxus 500€+</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav__item"><a href="#geschenkfinder" class="nav__link">Geschenkfinder</a></li>
+                    <li class="nav__item"><a href="#trending" class="nav__link">Trending</a></li>
+                    <li class="nav__item"><a href="pages/ratgeber.html" class="nav__link">Ratgeber</a></li>
+                    <li class="nav__item"><a href="#social" class="nav__link">Social Media</a></li>
+                </ul>
+                <button class="nav__close" id="nav-close" aria-label="Menü schließen">✕</button>
+            </div>
+
+            <div class="nav__actions">
+                <button class="nav__search-btn" id="search-btn" aria-label="Suche">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                    </svg>
+                </button>
+                <button class="nav__wishlist-btn" aria-label="Merkliste">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="wishlist-count">0</span>
+                </button>
+                <button class="nav__toggle" id="nav-toggle" aria-label="Menü öffnen">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-overlay__content">
+            <button class="search-overlay__close" id="search-close" aria-label="Suche schließen">✕</button>
+            <h2>Was suchst du?</h2>
+            <div class="search-overlay__input-wrap">
+                <input type="text" placeholder="z.B. Schmuck, Wellness, Valentinstag..." id="search-input" autocomplete="off">
+                <button class="search-overlay__submit" aria-label="Suchen">→</button>
+            </div>
+            <div class="search-overlay__suggestions">
+                <span>Beliebt:</span>
+                <a href="#">Goldschmuck</a>
+                <a href="#">Parfum</a>
+                <a href="#">Spa-Erlebnis</a>
+                <a href="#">Handtasche</a>
+                <a href="#">Cashmere</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero__bg">
+            <div class="hero__gradient"></div>
+        </div>
+        <div class="hero__content container">
+            <span class="hero__badge">Kuratierte Geschenkwelt</span>
+            <h1 class="hero__title">
+                Das perfekte Geschenk<br>
+                <em>für die besonderen Frauen</em><br>
+                in deinem Leben
+            </h1>
+            <p class="hero__subtitle">
+                Handverlesene Geschenkideen – von zeitloser Eleganz bis zu unvergesslichen Erlebnissen.
+                Weil sie nur das Beste verdient.
+            </p>
+            <div class="hero__actions">
+                <a href="#geschenkfinder" class="btn btn--primary">Geschenkfinder starten</a>
+                <a href="#kategorien" class="btn btn--outline">Alle Kategorien</a>
+            </div>
+            <div class="hero__trust">
+                <div class="trust-item">
+                    <span class="trust-number">2.500+</span>
+                    <span class="trust-label">Geschenkideen</span>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <span class="trust-number">50K+</span>
+                    <span class="trust-label">Glückliche Paare</span>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <span class="trust-number">4.9 ★</span>
+                    <span class="trust-label">Bewertung</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero__scroll">
+            <span>Entdecken</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories section" id="kategorien">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__badge">Kategorien</span>
+                <h2 class="section__title">Finde die perfekte Kategorie</h2>
+                <p class="section__subtitle">Durchsuche unsere sorgfältig zusammengestellten Geschenkkategorien</p>
+            </div>
+
+            <div class="categories__grid">
+                <a href="pages/kategorie.html?cat=schmuck" class="category-card category-card--large">
+                    <div class="category-card__bg" style="background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 50%, #d4b896 100%);">
+                        <div class="category-card__icon">💎</div>
+                    </div>
+                    <div class="category-card__content">
+                        <h3>Schmuck & Accessoires</h3>
+                        <p>Zeitlose Eleganz – von feinem Gold bis handgefertigten Unikaten</p>
+                        <span class="category-card__count">420+ Ideen</span>
+                    </div>
+                </a>
+
+                <a href="pages/kategorie.html?cat=beauty" class="category-card">
+                    <div class="category-card__bg" style="background: linear-gradient(135deg, #f0e4ef 0%, #e5d4e8 50%, #d1b8d6 100%);">
+                        <div class="category-card__icon">🧴</div>
+                    </div>
+                    <div class="category-card__content">
+                        <h3>Beauty & Wellness</h3>
+                        <p>Luxuriöse Pflege & Spa-Erlebnisse</p>
+                        <span class="category-card__count">380+ Ideen</span>
+                    </div>
+                </a>
+
+                <a href="pages/kategorie.html?cat=mode" class="category-card">
+                    <div class="category-card__bg" style="background: linear-gradient(135deg, #e4e8f0 0%, #d4dae8 50%, #b8c2d6 100%);">
+                        <div class="category-card__icon">👗</div>
+                    </div>
+                    <div class="category-card__content">
+                        <h3>Mode & Fashion</h3>
+                        <p>Designer-Stücke & Cashmere-Träume</p>
+                        <span class="category-card__count">350+ Ideen</span>
+                    </div>
+                </a>
+
+                <a href="pages/kategorie.html?cat=erlebnisse" class="category-card">
+                    <div class="category-card__bg" style="background: linear-gradient(135deg, #e4f0e8 0%, #d4e8da 50%, #b8d6c2 100%);">
+                        <div class="category-card__icon">✈️</div>
+                    </div>
+                    <div class="category-card__content">
+                        <h3>Erlebnisse</h3>
+                        <p>Unvergessliche Momente schenken</p>
+                        <span class="category-card__count">280+ Ideen</span>
+                    </div>
+                </a>
+
+                <a href="pages/kategorie.html?cat=personalisiert" class="category-card">
+                    <div class="category-card__bg" style="background: linear-gradient(135deg, #f5e8e4 0%, #e8d8d4 50%, #d6c0b8 100%);">
+                        <div class="category-card__icon">🎨</div>
+                    </div>
+                    <div class="category-card__content">
+                        <h3>Personalisiert</h3>
+                        <p>Einzigartig wie sie – individuell gestaltet</p>
+                        <span class="category-card__count">200+ Ideen</span>
+                    </div>
+                </a>
+
+                <a href="pages/kategorie.html?cat=tech" class="category-card">
+                    <div class="category-card__bg" style="background: linear-gradient(135deg, #e8e4f0 0%, #d8d4e8 50%, #c0b8d6 100%);">
+                        <div class="category-card__icon">📱</div>
+                    </div>
+                    <div class="category-card__content">
+                        <h3>Tech & Gadgets</h3>
+                        <p>Smarte Geschenke mit Stil</p>
+                        <span class="category-card__count">180+ Ideen</span>
+                    </div>
+                </a>
+
+                <a href="pages/kategorie.html?cat=home" class="category-card">
+                    <div class="category-card__bg" style="background: linear-gradient(135deg, #f0ece4 0%, #e8e2d4 50%, #d6ccb8 100%);">
+                        <div class="category-card__icon">🏡</div>
+                    </div>
+                    <div class="category-card__content">
+                        <h3>Home & Living</h3>
+                        <p>Stilvolle Akzente für ihr Zuhause</p>
+                        <span class="category-card__count">310+ Ideen</span>
+                    </div>
+                </a>
+
+                <a href="pages/kategorie.html?cat=gourmet" class="category-card">
+                    <div class="category-card__bg" style="background: linear-gradient(135deg, #f0e4e8 0%, #e8d4d8 50%, #d6b8c0 100%);">
+                        <div class="category-card__icon">🍫</div>
+                    </div>
+                    <div class="category-card__content">
+                        <h3>Gourmet & Genuss</h3>
+                        <p>Kulinarische Verwöhnmomente</p>
+                        <span class="category-card__count">250+ Ideen</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gift Finder Section -->
+    <section class="gift-finder section" id="geschenkfinder">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__badge">Interaktiv</span>
+                <h2 class="section__title">Der Geschenkfinder</h2>
+                <p class="section__subtitle">Beantworte 3 einfache Fragen und finde das perfekte Geschenk</p>
+            </div>
+
+            <div class="finder" id="finder">
+                <!-- Step 1: Occasion -->
+                <div class="finder__step active" data-step="1">
+                    <div class="finder__progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 33%"></div>
+                        </div>
+                        <span>Schritt 1 von 3</span>
+                    </div>
+                    <h3>Für welchen Anlass suchst du?</h3>
+                    <div class="finder__options">
+                        <button class="finder__option" data-value="valentinstag" data-next="2">
+                            <span class="finder__option-icon">💝</span>
+                            <span class="finder__option-text">Valentinstag</span>
+                        </button>
+                        <button class="finder__option" data-value="geburtstag" data-next="2">
+                            <span class="finder__option-icon">🎂</span>
+                            <span class="finder__option-text">Geburtstag</span>
+                        </button>
+                        <button class="finder__option" data-value="weihnachten" data-next="2">
+                            <span class="finder__option-icon">🎄</span>
+                            <span class="finder__option-text">Weihnachten</span>
+                        </button>
+                        <button class="finder__option" data-value="jahrestag" data-next="2">
+                            <span class="finder__option-icon">💍</span>
+                            <span class="finder__option-text">Jahrestag</span>
+                        </button>
+                        <button class="finder__option" data-value="danke" data-next="2">
+                            <span class="finder__option-icon">🙏</span>
+                            <span class="finder__option-text">Einfach so / Danke</span>
+                        </button>
+                        <button class="finder__option" data-value="muttertag" data-next="2">
+                            <span class="finder__option-icon">👩</span>
+                            <span class="finder__option-text">Muttertag</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Budget -->
+                <div class="finder__step" data-step="2">
+                    <div class="finder__progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 66%"></div>
+                        </div>
+                        <span>Schritt 2 von 3</span>
+                    </div>
+                    <h3>Wie viel möchtest du ausgeben?</h3>
+                    <div class="finder__options">
+                        <button class="finder__option" data-value="unter30" data-next="3">
+                            <span class="finder__option-icon">💰</span>
+                            <span class="finder__option-text">Unter 30€</span>
+                        </button>
+                        <button class="finder__option" data-value="30-75" data-next="3">
+                            <span class="finder__option-icon">💰💰</span>
+                            <span class="finder__option-text">30€ – 75€</span>
+                        </button>
+                        <button class="finder__option" data-value="75-200" data-next="3">
+                            <span class="finder__option-icon">💰💰💰</span>
+                            <span class="finder__option-text">75€ – 200€</span>
+                        </button>
+                        <button class="finder__option" data-value="200plus" data-next="3">
+                            <span class="finder__option-icon">💎</span>
+                            <span class="finder__option-text">200€+</span>
+                        </button>
+                    </div>
+                    <button class="finder__back" data-back="1">← Zurück</button>
+                </div>
+
+                <!-- Step 3: Interest -->
+                <div class="finder__step" data-step="3">
+                    <div class="finder__progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                        <span>Schritt 3 von 3</span>
+                    </div>
+                    <h3>Was interessiert sie am meisten?</h3>
+                    <div class="finder__options">
+                        <button class="finder__option" data-value="fashion" data-next="result">
+                            <span class="finder__option-icon">👗</span>
+                            <span class="finder__option-text">Mode & Style</span>
+                        </button>
+                        <button class="finder__option" data-value="wellness" data-next="result">
+                            <span class="finder__option-icon">🧘</span>
+                            <span class="finder__option-text">Wellness & Selfcare</span>
+                        </button>
+                        <button class="finder__option" data-value="abenteuer" data-next="result">
+                            <span class="finder__option-icon">🌍</span>
+                            <span class="finder__option-text">Reisen & Abenteuer</span>
+                        </button>
+                        <button class="finder__option" data-value="kreativ" data-next="result">
+                            <span class="finder__option-icon">🎨</span>
+                            <span class="finder__option-text">Kunst & Kreatives</span>
+                        </button>
+                        <button class="finder__option" data-value="kulinarik" data-next="result">
+                            <span class="finder__option-icon">🍷</span>
+                            <span class="finder__option-text">Kulinarik & Genuss</span>
+                        </button>
+                        <button class="finder__option" data-value="technik" data-next="result">
+                            <span class="finder__option-icon">📱</span>
+                            <span class="finder__option-text">Technik & Smart Home</span>
+                        </button>
+                    </div>
+                    <button class="finder__back" data-back="2">← Zurück</button>
+                </div>
+
+                <!-- Results -->
+                <div class="finder__step" data-step="result">
+                    <div class="finder__result">
+                        <h3>🎉 Deine persönlichen Empfehlungen</h3>
+                        <div class="finder__results-grid" id="finder-results">
+                            <!-- Filled by JS -->
+                        </div>
+                        <button class="finder__back" data-back="1" onclick="resetFinder()">🔄 Nochmal starten</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Section -->
+    <section class="trending section" id="trending">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__badge">Trending 2026</span>
+                <h2 class="section__title">Die beliebtesten Geschenkideen</h2>
+                <p class="section__subtitle">Was gerade alle begeistert – von unserer Community empfohlen</p>
+            </div>
+
+            <div class="trending__tabs">
+                <button class="trending__tab active" data-tab="alle">Alle</button>
+                <button class="trending__tab" data-tab="schmuck">Schmuck</button>
+                <button class="trending__tab" data-tab="beauty">Beauty</button>
+                <button class="trending__tab" data-tab="erlebnisse">Erlebnisse</button>
+                <button class="trending__tab" data-tab="mode">Mode</button>
+            </div>
+
+            <div class="trending__grid" id="trending-grid">
+                <!-- Product Card 1 -->
+                <article class="product-card" data-category="schmuck">
+                    <div class="product-card__image" style="background: linear-gradient(135deg, #f5e6d3, #e8d5c4);">
+                        <span class="product-card__emoji">✨💍</span>
+                        <span class="product-card__badge">Bestseller</span>
+                        <button class="product-card__wishlist" aria-label="Auf Merkliste">♡</button>
+                    </div>
+                    <div class="product-card__content">
+                        <span class="product-card__category">Schmuck</span>
+                        <h3>Personalisierte Goldkette</h3>
+                        <p>Zarte 18K vergoldete Kette mit graviertem Anhänger – ihr Name, ein Datum oder eine Botschaft</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">ab 89€</span>
+                            <div class="product-card__rating">★★★★★ <span>(2.4K)</span></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product Card 2 -->
+                <article class="product-card" data-category="beauty">
+                    <div class="product-card__image" style="background: linear-gradient(135deg, #f0e4ef, #d1b8d6);">
+                        <span class="product-card__emoji">🧖‍♀️🌸</span>
+                        <span class="product-card__badge">Neu</span>
+                        <button class="product-card__wishlist" aria-label="Auf Merkliste">♡</button>
+                    </div>
+                    <div class="product-card__content">
+                        <span class="product-card__category">Beauty & Wellness</span>
+                        <h3>Luxury Spa Box</h3>
+                        <p>Handverlesene Bio-Pflegeprodukte in edler Geschenkbox – Badeöl, Körperbutter & Duftkerze</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">ab 65€</span>
+                            <div class="product-card__rating">★★★★★ <span>(1.8K)</span></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product Card 3 -->
+                <article class="product-card" data-category="erlebnisse">
+                    <div class="product-card__image" style="background: linear-gradient(135deg, #e4f0e8, #b8d6c2);">
+                        <span class="product-card__emoji">🥂🌹</span>
+                        <span class="product-card__badge">Top bewertet</span>
+                        <button class="product-card__wishlist" aria-label="Auf Merkliste">♡</button>
+                    </div>
+                    <div class="product-card__content">
+                        <span class="product-card__category">Erlebnisse</span>
+                        <h3>Candlelight Dinner Gutschein</h3>
+                        <p>Romantisches Abendessen zu zweit in einem ausgewählten Sternerestaurant eurer Wahl</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">ab 149€</span>
+                            <div class="product-card__rating">★★★★★ <span>(3.1K)</span></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product Card 4 -->
+                <article class="product-card" data-category="mode">
+                    <div class="product-card__image" style="background: linear-gradient(135deg, #e4e8f0, #b8c2d6);">
+                        <span class="product-card__emoji">🧣👜</span>
+                        <button class="product-card__wishlist" aria-label="Auf Merkliste">♡</button>
+                    </div>
+                    <div class="product-card__content">
+                        <span class="product-card__category">Mode</span>
+                        <h3>Cashmere Schal Set</h3>
+                        <p>Ultraweicher Cashmere-Schal in edler Geschenkverpackung – zeitlose Farben, endlose Wärme</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">ab 120€</span>
+                            <div class="product-card__rating">★★★★☆ <span>(980)</span></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product Card 5 -->
+                <article class="product-card" data-category="schmuck">
+                    <div class="product-card__image" style="background: linear-gradient(135deg, #f5e8e4, #d6c0b8);">
+                        <span class="product-card__emoji">⌚💫</span>
+                        <span class="product-card__badge">Luxus</span>
+                        <button class="product-card__wishlist" aria-label="Auf Merkliste">♡</button>
+                    </div>
+                    <div class="product-card__content">
+                        <span class="product-card__category">Schmuck</span>
+                        <h3>Elegante Damenuhr</h3>
+                        <p>Minimalistische Armbanduhr mit Roségold-Finish und Saphirglas – Schweizer Uhrwerk</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">ab 289€</span>
+                            <div class="product-card__rating">★★★★★ <span>(1.2K)</span></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product Card 6 -->
+                <article class="product-card" data-category="beauty">
+                    <div class="product-card__image" style="background: linear-gradient(135deg, #f0ece4, #d6ccb8);">
+                        <span class="product-card__emoji">🌺💐</span>
+                        <button class="product-card__wishlist" aria-label="Auf Merkliste">♡</button>
+                    </div>
+                    <div class="product-card__content">
+                        <span class="product-card__category">Beauty</span>
+                        <h3>Designer Parfum Set</h3>
+                        <p>Kuratiertes Duft-Set mit 5 exklusiven Parfums zum Entdecken – in eleganter Sammelbox</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">ab 75€</span>
+                            <div class="product-card__rating">★★★★★ <span>(2.1K)</span></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product Card 7 -->
+                <article class="product-card" data-category="erlebnisse">
+                    <div class="product-card__image" style="background: linear-gradient(135deg, #e8e4f0, #c0b8d6);">
+                        <span class="product-card__emoji">💆‍♀️🕯️</span>
+                        <button class="product-card__wishlist" aria-label="Auf Merkliste">♡</button>
+                    </div>
+                    <div class="product-card__content">
+                        <span class="product-card__category">Erlebnisse</span>
+                        <h3>Wellness-Wochenende</h3>
+                        <p>2 Nächte im 5-Sterne-Spa-Hotel mit Vollpension, Massagen & Pool-Zugang für Zwei</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">ab 399€</span>
+                            <div class="product-card__rating">★★★★★ <span>(890)</span></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product Card 8 -->
+                <article class="product-card" data-category="mode">
+                    <div class="product-card__image" style="background: linear-gradient(135deg, #f0e4e8, #d6b8c0);">
+                        <span class="product-card__emoji">👠✨</span>
+                        <span class="product-card__badge">Bestseller</span>
+                        <button class="product-card__wishlist" aria-label="Auf Merkliste">♡</button>
+                    </div>
+                    <div class="product-card__content">
+                        <span class="product-card__category">Mode</span>
+                        <h3>Designer Handtasche</h3>
+                        <p>Zeitlose Lederhandtasche im Quiet-Luxury-Stil – handgefertigt in Italien</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">ab 450€</span>
+                            <div class="product-card__rating">★★★★★ <span>(1.5K)</span></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="trending__cta">
+                <a href="pages/kategorie.html" class="btn btn--primary">Alle Geschenkideen ansehen →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Occasion Highlights -->
+    <section class="occasions section">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__badge">Anlässe</span>
+                <h2 class="section__title">Der richtige Anlass, das richtige Geschenk</h2>
+            </div>
+
+            <div class="occasions__grid">
+                <a href="pages/kategorie.html?cat=valentinstag" class="occasion-card">
+                    <div class="occasion-card__visual" style="background: linear-gradient(135deg, #f8e0e6, #f2c4d0);">
+                        <span>💝</span>
+                    </div>
+                    <h3>Valentinstag</h3>
+                    <p>14. Februar – Zeig ihr deine Liebe</p>
+                </a>
+                <a href="pages/kategorie.html?cat=muttertag" class="occasion-card">
+                    <div class="occasion-card__visual" style="background: linear-gradient(135deg, #e6f0e8, #c4e0cc);">
+                        <span>🌷</span>
+                    </div>
+                    <h3>Muttertag</h3>
+                    <p>Für die beste Mama der Welt</p>
+                </a>
+                <a href="pages/kategorie.html?cat=geburtstag" class="occasion-card">
+                    <div class="occasion-card__visual" style="background: linear-gradient(135deg, #e6e0f8, #c4b8f0);">
+                        <span>🎂</span>
+                    </div>
+                    <h3>Geburtstag</h3>
+                    <p>Das ganze Jahr ein Grund zu feiern</p>
+                </a>
+                <a href="pages/kategorie.html?cat=weihnachten" class="occasion-card">
+                    <div class="occasion-card__visual" style="background: linear-gradient(135deg, #f8ece0, #f0d8c0);">
+                        <span>🎄</span>
+                    </div>
+                    <h3>Weihnachten</h3>
+                    <p>Zauberhafte Geschenke unterm Baum</p>
+                </a>
+                <a href="pages/kategorie.html?cat=jahrestag" class="occasion-card">
+                    <div class="occasion-card__visual" style="background: linear-gradient(135deg, #f8e0ec, #f0c0d8);">
+                        <span>💍</span>
+                    </div>
+                    <h3>Jahrestag</h3>
+                    <p>Feiert eure gemeinsame Zeit</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guide / Tips Section -->
+    <section class="guide section">
+        <div class="container">
+            <div class="guide__layout">
+                <div class="guide__content">
+                    <span class="section__badge">Ratgeber</span>
+                    <h2 class="section__title">5 Tipps für das perfekte Geschenk</h2>
+                    <div class="guide__tips">
+                        <div class="guide__tip">
+                            <span class="guide__tip-number">01</span>
+                            <div>
+                                <h4>Hör genau zu</h4>
+                                <p>Die besten Geschenke kommen aus Andeutungen im Alltag. Merke dir, was sie in Schaufenstern bewundert oder online speichert.</p>
+                            </div>
+                        </div>
+                        <div class="guide__tip">
+                            <span class="guide__tip-number">02</span>
+                            <div>
+                                <h4>Qualität vor Quantität</h4>
+                                <p>Ein durchdachtes Geschenk übertrifft zehn hastige Käufe. Investiere in etwas, das sie wirklich nutzt und schätzt.</p>
+                            </div>
+                        </div>
+                        <div class="guide__tip">
+                            <span class="guide__tip-number">03</span>
+                            <div>
+                                <h4>Persönlich machen</h4>
+                                <p>Eine Gravur, eine handgeschriebene Karte oder ein Foto – persönliche Details machen jedes Geschenk unvergesslich.</p>
+                            </div>
+                        </div>
+                        <div class="guide__tip">
+                            <span class="guide__tip-number">04</span>
+                            <div>
+                                <h4>Erlebnisse schenken</h4>
+                                <p>Gemeinsame Erinnerungen sind wertvoller als materielle Dinge. Ein Spa-Tag oder ein Kochkurs kann mehr berühren als Schmuck.</p>
+                            </div>
+                        </div>
+                        <div class="guide__tip">
+                            <span class="guide__tip-number">05</span>
+                            <div>
+                                <h4>Die Verpackung zählt</h4>
+                                <p>Die Präsentation ist Teil des Geschenks. Eine schöne Verpackung mit Schleife und Karte zeigt Mühe und Wertschätzung.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="guide__visual">
+                    <div class="guide__visual-card" style="background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 50%, #d4b896 100%);">
+                        <div class="guide__visual-content">
+                            <span class="guide__visual-emoji">🎁</span>
+                            <h3>Geschenk-Ratgeber</h3>
+                            <p>Lade unseren kostenlosen PDF-Guide herunter mit über 100 Geschenkideen sortiert nach Anlass und Budget.</p>
+                            <a href="#newsletter" class="btn btn--primary btn--small">Guide herunterladen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Avatar Team Section -->
+    <section class="section" id="team">
+        <div class="container" id="avatar-carousel-container">
+            <!-- Rendered by JS: AvatarSystem.renderAvatarCarousel() -->
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social section" id="social">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__badge">Community</span>
+                <h2 class="section__title">Folge uns für tägliche Inspiration</h2>
+                <p class="section__subtitle">Entdecke neue Geschenkideen auf unseren Social-Media-Kanälen</p>
+            </div>
+
+            <div class="social__channels">
+                <!-- Instagram -->
+                <div class="social-channel">
+                    <div class="social-channel__header">
+                        <div class="social-channel__icon social-channel__icon--instagram">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                            </svg>
+                        </div>
+                        <div class="social-channel__info">
+                            <h3>Instagram</h3>
+                            <span>@luxuryforher_de</span>
+                        </div>
+                        <a href="https://instagram.com/luxuryforher_de" target="_blank" rel="noopener" class="btn btn--small btn--outline">Folgen</a>
+                    </div>
+                    <div class="social-channel__grid">
+                        <div class="social-post" style="background: linear-gradient(135deg, #f5e6d3, #d4b896);">
+                            <span class="social-post__emoji">💎✨</span>
+                            <span class="social-post__type">Reel</span>
+                        </div>
+                        <div class="social-post" style="background: linear-gradient(135deg, #f0e4ef, #d1b8d6);">
+                            <span class="social-post__emoji">🌸🎀</span>
+                            <span class="social-post__type">Post</span>
+                        </div>
+                        <div class="social-post" style="background: linear-gradient(135deg, #e4f0e8, #b8d6c2);">
+                            <span class="social-post__emoji">🎁🥂</span>
+                            <span class="social-post__type">Reel</span>
+                        </div>
+                        <div class="social-post" style="background: linear-gradient(135deg, #f0e4e8, #d6b8c0);">
+                            <span class="social-post__emoji">💝🌹</span>
+                            <span class="social-post__type">Carousel</span>
+                        </div>
+                    </div>
+                    <div class="social-channel__stats">
+                        <span>📸 245 Beiträge</span>
+                        <span>❤️ 52K Follower</span>
+                    </div>
+                    <div class="social-channel__content-ideas">
+                        <h4>Content-Schwerpunkte:</h4>
+                        <ul>
+                            <li>🎯 Geschenkideen-Reels mit Unboxing</li>
+                            <li>📋 Geschenk-Guides als Carousels</li>
+                            <li>💡 "Schenk-Tipp der Woche" Stories</li>
+                            <li>👫 Community-Empfehlungen & Reaktionen</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- TikTok -->
+                <div class="social-channel">
+                    <div class="social-channel__header">
+                        <div class="social-channel__icon social-channel__icon--tiktok">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.17a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.01-.6z"/>
+                            </svg>
+                        </div>
+                        <div class="social-channel__info">
+                            <h3>TikTok</h3>
+                            <span>@luxuryforher</span>
+                        </div>
+                        <a href="https://tiktok.com/@luxuryforher" target="_blank" rel="noopener" class="btn btn--small btn--outline">Folgen</a>
+                    </div>
+                    <div class="social-channel__grid">
+                        <div class="social-post" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+                            <span class="social-post__emoji">🎁💝</span>
+                            <span class="social-post__type social-post__type--dark">324K ▶</span>
+                        </div>
+                        <div class="social-post" style="background: linear-gradient(135deg, #2d1b69, #11998e);">
+                            <span class="social-post__emoji">💍👀</span>
+                            <span class="social-post__type social-post__type--dark">1.2M ▶</span>
+                        </div>
+                        <div class="social-post" style="background: linear-gradient(135deg, #ee0979, #ff6a00);">
+                            <span class="social-post__emoji">😍🛍️</span>
+                            <span class="social-post__type social-post__type--dark">890K ▶</span>
+                        </div>
+                        <div class="social-post" style="background: linear-gradient(135deg, #0f0c29, #302b63);">
+                            <span class="social-post__emoji">✨🎀</span>
+                            <span class="social-post__type social-post__type--dark">567K ▶</span>
+                        </div>
+                    </div>
+                    <div class="social-channel__stats">
+                        <span>🎬 180 Videos</span>
+                        <span>❤️ 128K Follower</span>
+                    </div>
+                    <div class="social-channel__content-ideas">
+                        <h4>Content-Schwerpunkte:</h4>
+                        <ul>
+                            <li>🎬 "Geschenk-Reaktion" Videos (POV-Style)</li>
+                            <li>💰 "Geschenke unter X€" – Budget-Guides</li>
+                            <li>🔥 Trending Geschenkideen & Hauls</li>
+                            <li>😱 "Er hat DAS geschenkt?!" – Storytime</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter section" id="newsletter">
+        <div class="container">
+            <div class="newsletter__card">
+                <div class="newsletter__content">
+                    <span class="section__badge">Newsletter</span>
+                    <h2>Nie wieder ideenlos schenken</h2>
+                    <p>Erhalte wöchentlich kuratierte Geschenkideen, exklusive Rabattcodes und Insider-Tipps direkt in dein Postfach. Plus: <strong>5% Rabatt</strong> auf deine erste Bestellung!</p>
+                    <form class="newsletter__form" id="newsletter-form">
+                        <div class="newsletter__input-wrap">
+                            <input type="email" placeholder="Deine E-Mail-Adresse" required>
+                            <button type="submit" class="btn btn--primary">Anmelden ✨</button>
+                        </div>
+                        <label class="newsletter__consent">
+                            <input type="checkbox" required>
+                            <span>Ich stimme dem Erhalt von Newslettern zu und habe die <a href="#">Datenschutzerklärung</a> gelesen.</span>
+                        </label>
+                    </form>
+                    <div class="newsletter__success" id="newsletter-success" hidden>
+                        <span>🎉</span>
+                        <h3>Willkommen!</h3>
+                        <p>Dein 5%-Rabattcode ist: <strong>LUXHER5</strong></p>
+                    </div>
+                </div>
+                <div class="newsletter__visual">
+                    <div class="newsletter__emoji-float">
+                        <span style="--delay: 0s; --x: 20%; --y: 30%;">💎</span>
+                        <span style="--delay: 1s; --x: 70%; --y: 20%;">🎁</span>
+                        <span style="--delay: 2s; --x: 40%; --y: 70%;">✨</span>
+                        <span style="--delay: 3s; --x: 80%; --y: 60%;">💝</span>
+                        <span style="--delay: 4s; --x: 30%; --y: 50%;">🌸</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="index.html" class="nav__logo">
+                        <span class="logo-icon">♦</span>
+                        <span class="logo-text">Luxury<em>ForHer</em></span>
+                    </a>
+                    <p>Handverlesene Geschenkideen für die besonderen Frauen in deinem Leben. Weil das Leben zu kurz ist für gewöhnliche Geschenke.</p>
+                    <div class="footer__social">
+                        <a href="https://instagram.com/luxuryforher_de" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
+                        <a href="https://tiktok.com/@luxuryforher" target="_blank" rel="noopener" aria-label="TikTok">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.17a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.01-.6z"/></svg>
+                        </a>
+                        <a href="https://pinterest.com/luxuryforher" target="_blank" rel="noopener" aria-label="Pinterest">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__links">
+                    <h4>Geschenkideen</h4>
+                    <a href="pages/kategorie.html?cat=schmuck">Schmuck & Accessoires</a>
+                    <a href="pages/kategorie.html?cat=beauty">Beauty & Wellness</a>
+                    <a href="pages/kategorie.html?cat=mode">Mode & Fashion</a>
+                    <a href="pages/kategorie.html?cat=erlebnisse">Erlebnisse</a>
+                    <a href="pages/kategorie.html?cat=personalisiert">Personalisierte Geschenke</a>
+                    <a href="pages/kategorie.html?cat=tech">Tech & Gadgets</a>
+                </div>
+
+                <div class="footer__links">
+                    <h4>Anlässe</h4>
+                    <a href="pages/kategorie.html?cat=valentinstag">Valentinstag</a>
+                    <a href="pages/kategorie.html?cat=geburtstag">Geburtstag</a>
+                    <a href="pages/kategorie.html?cat=weihnachten">Weihnachten</a>
+                    <a href="pages/kategorie.html?cat=jahrestag">Jahrestag</a>
+                    <a href="pages/kategorie.html?cat=muttertag">Muttertag</a>
+                </div>
+
+                <div class="footer__links">
+                    <h4>Über uns</h4>
+                    <a href="#">Unsere Story</a>
+                    <a href="#">So funktioniert's</a>
+                    <a href="pages/ratgeber.html">Ratgeber & Blog</a>
+                    <a href="#">Kontakt</a>
+                    <a href="#">Partner werden</a>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p>© 2026 LuxuryForHer. Alle Rechte vorbehalten.</p>
+                <div class="footer__legal">
+                    <a href="#">Impressum</a>
+                    <a href="#">Datenschutz</a>
+                    <a href="#">AGB</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/affiliate.js"></script>
+    <script src="js/avatars.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize Avatar Carousel on homepage
+        document.addEventListener('DOMContentLoaded', () => {
+            const carouselContainer = document.getElementById('avatar-carousel-container');
+            if (carouselContainer && typeof AvatarSystem !== 'undefined') {
+                carouselContainer.innerHTML = AvatarSystem.renderAvatarCarousel();
+            }
+        });
+    </script>
+</body>
+</html>

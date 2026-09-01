@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geschenkideen – LuxuryForHer</title>
+    <meta name="description" content="Entdecke handverlesene Geschenkideen für Frauen in jeder Kategorie und jedem Budget.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/avatars.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
+</head>
+<body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>✨ Kostenloser Versand ab 75€ · 5% Rabatt mit Newsletter-Anmeldung ✨</p>
+    </div>
+
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="../index.html" class="nav__logo">
+                <span class="logo-icon">♦</span>
+                <span class="logo-text">Luxury<em>ForHer</em></span>
+            </a>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="../index.html#kategorien" class="nav__link">Geschenkideen</a></li>
+                    <li class="nav__item"><a href="../index.html#geschenkfinder" class="nav__link">Geschenkfinder</a></li>
+                    <li class="nav__item"><a href="../index.html#trending" class="nav__link">Trending</a></li>
+                    <li class="nav__item"><a href="ratgeber.html" class="nav__link">Ratgeber</a></li>
+                </ul>
+                <button class="nav__close" id="nav-close" aria-label="Menü schließen">✕</button>
+            </div>
+            <div class="nav__actions">
+                <button class="nav__toggle" id="nav-toggle" aria-label="Menü öffnen">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Category Hero -->
+    <section class="cat-hero" id="cat-hero">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="../index.html">Home</a>
+                <span>›</span>
+                <span id="breadcrumb-cat">Geschenkideen</span>
+            </nav>
+            <h1 id="cat-title">Alle Geschenkideen</h1>
+            <p id="cat-description">Entdecke unsere handverlesenen Geschenkideen – sortiert, gefiltert und von unseren Expertinnen empfohlen.</p>
+        </div>
+    </section>
+
+    <!-- Avatar Recommendations Bar -->
+    <section class="avatar-bar">
+        <div class="container">
+            <div class="avatar-bar__inner" id="avatar-bar">
+                <!-- Filled by JS with matching avatar recommendation -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters & Products -->
+    <section class="catalog section">
+        <div class="container">
+            <div class="catalog__layout">
+                <!-- Sidebar Filters -->
+                <aside class="catalog__filters" id="filters">
+                    <div class="filter-group">
+                        <h4>Kategorie</h4>
+                        <div class="filter-options">
+                            <label><input type="radio" name="category" value="" checked> Alle</label>
+                            <label><input type="radio" name="category" value="schmuck"> 💎 Schmuck</label>
+                            <label><input type="radio" name="category" value="beauty"> 🧴 Beauty & Wellness</label>
+                            <label><input type="radio" name="category" value="mode"> 👗 Mode</label>
+                            <label><input type="radio" name="category" value="erlebnisse"> ✈️ Erlebnisse</label>
+                            <label><input type="radio" name="category" value="personalisiert"> 🎨 Personalisiert</label>
+                            <label><input type="radio" name="category" value="tech"> 📱 Tech</label>
+                            <label><input type="radio" name="category" value="home"> 🏡 Home & Living</label>
+                            <label><input type="radio" name="category" value="gourmet"> 🍫 Gourmet</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Anlass</h4>
+                        <div class="filter-options">
+                            <label><input type="radio" name="occasion" value="" checked> Alle</label>
+                            <label><input type="radio" name="occasion" value="valentinstag"> 💝 Valentinstag</label>
+                            <label><input type="radio" name="occasion" value="geburtstag"> 🎂 Geburtstag</label>
+                            <label><input type="radio" name="occasion" value="weihnachten"> 🎄 Weihnachten</label>
+                            <label><input type="radio" name="occasion" value="jahrestag"> 💍 Jahrestag</label>
+                            <label><input type="radio" name="occasion" value="muttertag"> 🌷 Muttertag</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Budget</h4>
+                        <div class="filter-options">
+                            <label><input type="radio" name="budget" value="" checked> Alle</label>
+                            <label><input type="radio" name="budget" value="0-50"> Unter 50€</label>
+                            <label><input type="radio" name="budget" value="50-150"> 50€ – 150€</label>
+                            <label><input type="radio" name="budget" value="150-500"> 150€ – 500€</label>
+                            <label><input type="radio" name="budget" value="500-9999"> 500€+</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Sortieren</h4>
+                        <select id="sort-select">
+                            <option value="popular">Beliebteste</option>
+                            <option value="rating">Bestbewertet</option>
+                            <option value="price-asc">Preis: Niedrig → Hoch</option>
+                            <option value="price-desc">Preis: Hoch → Niedrig</option>
+                        </select>
+                    </div>
+                </aside>
+
+                <!-- Product Grid -->
+                <div class="catalog__products">
+                    <div class="catalog__count" id="result-count"></div>
+                    <div class="catalog__grid" id="product-grid">
+                        <!-- Products rendered by JS -->
+                    </div>
+
+                    <!-- Affiliate Disclosure -->
+                    <div class="affiliate-disclosure" id="affiliate-disclosure">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__bottom">
+                <p>© 2026 LuxuryForHer. Alle Rechte vorbehalten.</p>
+                <div class="footer__legal">
+                    <a href="#">Impressum</a>
+                    <a href="#">Datenschutz</a>
+                    <a href="#">AGB</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/affiliate.js"></script>
+    <script src="../js/avatars.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const catParam = params.get('cat');
+
+            const categoryNames = {
+                schmuck: { name: 'Schmuck & Accessoires', desc: 'Zeitlose Eleganz – von feinem Gold bis handgefertigten Unikaten.' },
+                beauty: { name: 'Beauty & Wellness', desc: 'Luxuriöse Pflege, Spa-Sets und Duft-Erlebnisse.' },
+                mode: { name: 'Mode & Fashion', desc: 'Designer-Stücke, Cashmere und zeitlose Handtaschen.' },
+                erlebnisse: { name: 'Erlebnisse', desc: 'Unvergessliche Momente – von Dinner bis Wellness-Wochenende.' },
+                personalisiert: { name: 'Personalisierte Geschenke', desc: 'Einzigartig wie sie – mit Gravur, Namen oder eurer Geschichte.' },
+                tech: { name: 'Tech & Gadgets', desc: 'Smarte Geschenke mit Stil – für die technikaffine Frau.' },
+                home: { name: 'Home & Living', desc: 'Stilvolle Akzente für ihr Zuhause.' },
+                gourmet: { name: 'Gourmet & Genuss', desc: 'Kulinarische Verwöhnmomente – Pralinen, Wein & mehr.' },
+                valentinstag: { name: 'Valentinstag', desc: 'Die schönsten Geschenke zum Tag der Liebe. 💝', occasion: 'valentinstag' },
+                geburtstag: { name: 'Geburtstag', desc: 'Perfekte Geburtstagsgeschenke für jeden Typ. 🎂', occasion: 'geburtstag' },
+                weihnachten: { name: 'Weihnachten', desc: 'Zauberhafte Geschenke unterm Baum. 🎄', occasion: 'weihnachten' },
+                jahrestag: { name: 'Jahrestag', desc: 'Feiert eure gemeinsame Zeit mit besonderen Geschenken. 💍', occasion: 'jahrestag' },
+                muttertag: { name: 'Muttertag', desc: 'Für die beste Mama der Welt. 🌷', occasion: 'muttertag' },
+                unter50: { name: 'Geschenke unter 50€', desc: 'Tolle Ideen ohne großes Budget.', maxPrice: 50 },
+                '50-150': { name: '50€ – 150€', desc: 'Die goldene Mitte: Qualität trifft Budget.', minPrice: 50, maxPrice: 150 },
+                '150-500': { name: '150€ – 500€', desc: 'Premium-Geschenke für besondere Anlässe.', minPrice: 150, maxPrice: 500 },
+                luxus: { name: 'Luxus 500€+', desc: 'Exklusive Geschenke für unvergessliche Momente.', minPrice: 500 },
+            };
+
+            const catInfo = categoryNames[catParam] || { name: 'Alle Geschenkideen', desc: 'Entdecke unsere gesamte Kollektion.' };
+
+            document.getElementById('cat-title').textContent = catInfo.name;
+            document.getElementById('cat-description').textContent = catInfo.desc;
+            document.getElementById('breadcrumb-cat').textContent = catInfo.name;
+
+            // Pre-select filters from URL
+            if (catParam && !catInfo.occasion && !catInfo.minPrice && !catInfo.maxPrice) {
+                const catRadio = document.querySelector(`input[name="category"][value="${catParam}"]`);
+                if (catRadio) catRadio.checked = true;
+            }
+            if (catInfo.occasion) {
+                const occRadio = document.querySelector(`input[name="occasion"][value="${catInfo.occasion}"]`);
+                if (occRadio) occRadio.checked = true;
+            }
+
+            // Render products
+            function renderProducts() {
+                const category = document.querySelector('input[name="category"]:checked').value;
+                const occasion = document.querySelector('input[name="occasion"]:checked').value;
+                const budget = document.querySelector('input[name="budget"]:checked').value;
+                const sort = document.getElementById('sort-select').value;
+
+                const filters = { sort };
+                if (category) filters.category = category;
+                if (occasion) filters.occasion = occasion;
+                if (budget) {
+                    const [min, max] = budget.split('-').map(Number);
+                    filters.minPrice = min;
+                    filters.maxPrice = max;
+                }
+
+                // Apply URL-based price filters
+                if (catInfo.minPrice) filters.minPrice = catInfo.minPrice;
+                if (catInfo.maxPrice) filters.maxPrice = catInfo.maxPrice;
+
+                const products = AffiliateSystem.filterProducts(filters);
+
+                document.getElementById('result-count').textContent =
+                    `${products.length} Geschenkidee${products.length !== 1 ? 'n' : ''} gefunden`;
+
+                // Render with avatar recommendations
+                const grid = document.getElementById('product-grid');
+                grid.innerHTML = products.map(p => AvatarSystem.renderProductWithAvatar(p)).join('');
+
+                // Render affiliate disclosure
+                document.getElementById('affiliate-disclosure').innerHTML =
+                    AffiliateSystem.renderDisclosure();
+
+                // Update avatar bar
+                updateAvatarBar(category || catParam);
+            }
+
+            function updateAvatarBar(category) {
+                const bar = document.getElementById('avatar-bar');
+                const matchingAvatars = Object.values(AvatarSystem.AVATARS).filter(a =>
+                    !category || a.expertise.includes(category)
+                );
+
+                const avatar = matchingAvatars[0] || AvatarSystem.AVATARS.sophia;
+
+                bar.innerHTML = `
+                    <div class="avatar-bar__avatar">
+                        ${AvatarSystem.generateAvatarSVG(avatar, 56)}
+                    </div>
+                    <div class="avatar-bar__text">
+                        <strong>${avatar.name}</strong> – ${avatar.role}
+                        <p>"${avatar.phrases[Math.floor(Math.random() * avatar.phrases.length)]}"</p>
+                    </div>
+                `;
+            }
+
+            // Event listeners for filters
+            document.querySelectorAll('#filters input, #sort-select').forEach(el => {
+                el.addEventListener('change', renderProducts);
+            });
+
+            // Initial render
+            renderProducts();
+        });
+    </script>
+</body>
+</html>
