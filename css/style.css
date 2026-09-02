@@ -1,28 +1,29 @@
 /* ===================================================
    LuxuryForHer – Stylesheet
-   Design: Quiet Luxury · Feminine Elegance
-   Colors: Rose Gold, Cream, Sage, Soft Plum
+   Design: Quiet Luxury · Masculine Confidence
+   Colors: Warm Gold, Charcoal, Slate, Cool Grey
+   Target: Men shopping premium gifts for women
    =================================================== */
 
 /* --- CSS Custom Properties --- */
 :root {
-    /* Brand colors */
-    --color-primary: #c8917c;
-    --color-primary-light: #e8c4b8;
-    --color-primary-dark: #a67260;
-    --color-secondary: #8b7e74;
-    --color-accent: #d4a59a;
-    --color-accent-rose: #e8a598;
+    /* Brand colors – warm gold/amber accent, confident & premium */
+    --color-primary: #b8964e;
+    --color-primary-light: #d4bc8a;
+    --color-primary-dark: #96783c;
+    --color-secondary: #5c6470;
+    --color-accent: #c4a764;
+    --color-accent-rose: #c9a84e;
 
-    /* Neutrals */
-    --color-bg: #faf8f6;
-    --color-bg-alt: #f5f0eb;
+    /* Neutrals – cool-warm grey base, clean & sharp */
+    --color-bg: #f4f3f1;
+    --color-bg-alt: #eae8e4;
     --color-bg-card: #ffffff;
-    --color-text: #2d2926;
-    --color-text-light: #6b6460;
-    --color-text-muted: #9e958e;
-    --color-border: #e8e2dc;
-    --color-border-light: #f0ebe6;
+    --color-text: #1c1c1e;
+    --color-text-light: #4a4a4e;
+    --color-text-muted: #8a878e;
+    --color-border: #d8d6d2;
+    --color-border-light: #eceae6;
 
     /* Semantic */
     --color-success: #7ab88f;

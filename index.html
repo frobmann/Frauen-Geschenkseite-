@@ -17,11 +17,6 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
 </head>
 <body>
-    <!-- Announcement Bar -->
-    <div class="announcement-bar">
-        <p>✨ Kostenloser Versand ab 75€ · 5% Rabatt mit Newsletter-Anmeldung ✨</p>
-    </div>
-
     <!-- Navigation -->
     <header class="header" id="header">
         <nav class="nav container">
@@ -779,18 +774,20 @@
                     <p>Erhalte wöchentlich kuratierte Geschenkideen, exklusive Rabattcodes und Insider-Tipps direkt in dein Postfach. Plus: <strong>5% Rabatt</strong> auf deine erste Bestellung!</p>
                     <form class="newsletter__form" id="newsletter-form">
                         <div class="newsletter__input-wrap">
-                            <input type="email" placeholder="Deine E-Mail-Adresse" required>
+                            <input type="email" placeholder="Deine E-Mail-Adresse" required aria-label="E-Mail-Adresse für Newsletter">
                             <button type="submit" class="btn btn--primary">Anmelden ✨</button>
                         </div>
                         <label class="newsletter__consent">
                             <input type="checkbox" required>
-                            <span>Ich stimme dem Erhalt von Newslettern zu und habe die <a href="#">Datenschutzerklärung</a> gelesen.</span>
+                            <span>Ich willige in den Erhalt des Newsletters mit kuratierten Geschenkideen und Rabattcodes ein. Die Einwilligung kann ich jederzeit mit Wirkung für die Zukunft widerrufen. Weitere Informationen in der <a href="pages/datenschutz.html#newsletter">Datenschutzerklärung</a>.</span>
                         </label>
+                        <p class="newsletter__doi-hint">📧 Nach der Anmeldung erhältst du eine Bestätigungs-E-Mail (Double-Opt-In). Erst nach Klick auf den Aktivierungslink ist deine Anmeldung wirksam.</p>
                     </form>
                     <div class="newsletter__success" id="newsletter-success" hidden>
                         <span>🎉</span>
-                        <h3>Willkommen!</h3>
-                        <p>Dein 5%-Rabattcode ist: <strong>LUXHER5</strong></p>
+                        <h3>Fast geschafft!</h3>
+                        <p>Wir haben dir eine <strong>Bestätigungs-E-Mail</strong> gesendet. Bitte klicke auf den Link in der E-Mail, um deine Anmeldung abzuschließen.</p>
+                        <p class="newsletter__doi-note">Dein 5%-Rabattcode <strong>LUXHER5</strong> wird dir nach der Bestätigung zugesendet.</p>
                     </div>
                 </div>
                 <div class="newsletter__visual">
@@ -861,13 +858,195 @@
             <div class="footer__bottom">
                 <p>© 2026 LuxuryForHer. Alle Rechte vorbehalten.</p>
                 <div class="footer__legal">
-                    <a href="#">Impressum</a>
-                    <a href="#">Datenschutz</a>
+                    <a href="pages/impressum.html">Impressum</a>
+                    <a href="pages/datenschutz.html">Datenschutz</a>
                     <a href="#">AGB</a>
+                    <a href="#" id="cookie-settings-footer">Cookie-Einstellungen</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookie-banner" hidden>
+        <div class="cookie-banner__content">
+            <div class="cookie-banner__text">
+                <h4>🍪 Cookie-Einstellungen</h4>
+                <p>Wir verwenden Cookies, um dir die beste Erfahrung auf unserer Website zu bieten. Technisch notwendige Cookies sind für den Betrieb erforderlich. Analyse- und Marketing-Cookies helfen uns, die Website zu verbessern und relevante Inhalte anzuzeigen.</p>
+                <p>Mehr dazu in unserer <a href="pages/datenschutz.html">Datenschutzerklärung</a>.</p>
+            </div>
+            <div class="cookie-banner__actions">
+                <button class="btn btn--primary btn--small" id="cookie-accept-all">Alle akzeptieren</button>
+                <button class="btn btn--outline btn--small" id="cookie-necessary-only">Nur notwendige</button>
+                <button class="cookie-banner__details-toggle" id="cookie-details-toggle">Einstellungen anpassen ▾</button>
+            </div>
+        </div>
+        <div class="cookie-banner__details" id="cookie-details" hidden>
+            <label class="cookie-option">
+                <input type="checkbox" checked disabled>
+                <div>
+                    <strong>Technisch notwendig</strong>
+                    <span>Erforderlich für den Betrieb der Website (Cookie-Einstellungen, Sicherheit)</span>
+                </div>
+            </label>
+            <label class="cookie-option">
+                <input type="checkbox" id="cookie-analytics">
+                <div>
+                    <strong>Analyse & Statistik</strong>
+                    <span>Google Analytics – hilft uns zu verstehen, wie die Website genutzt wird</span>
+                </div>
+            </label>
+            <label class="cookie-option">
+                <input type="checkbox" id="cookie-marketing">
+                <div>
+                    <strong>Marketing & Social Media</strong>
+                    <span>Meta Pixel, Affiliate-Tracking – ermöglicht personalisierte Inhalte</span>
+                </div>
+            </label>
+            <button class="btn btn--primary btn--small" id="cookie-save-choices">Auswahl speichern</button>
+        </div>
+    </div>
+
+    <style>
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: var(--color-bg-card);
+            border-top: 1px solid var(--color-border);
+            box-shadow: 0 -4px 30px rgba(0,0,0,0.12);
+            padding: var(--space-xl) 0;
+        }
+
+        .cookie-banner__content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+            display: flex;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+
+        .cookie-banner__text {
+            flex: 1;
+        }
+
+        .cookie-banner__text h4 {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .cookie-banner__text p {
+            font-size: 0.78rem;
+            color: var(--color-text-light);
+            line-height: 1.65;
+            margin-bottom: var(--space-xs);
+        }
+
+        .cookie-banner__text a {
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+
+        .cookie-banner__actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            flex-shrink: 0;
+        }
+
+        .cookie-banner__details-toggle {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            text-align: center;
+            padding: var(--space-xs);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: var(--font-body);
+            transition: color 0.2s;
+        }
+
+        .cookie-banner__details-toggle:hover {
+            color: var(--color-primary);
+        }
+
+        .cookie-banner__details {
+            max-width: 1200px;
+            margin: var(--space-lg) auto 0;
+            padding: var(--space-lg) var(--space-xl) 0;
+            border-top: 1px solid var(--color-border-light);
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+            align-items: center;
+        }
+
+        .cookie-option {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            padding: var(--space-md);
+            background: var(--color-bg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .cookie-option input {
+            margin-top: 3px;
+            accent-color: var(--color-primary);
+        }
+
+        .cookie-option strong {
+            display: block;
+            font-size: 0.82rem;
+            margin-bottom: 2px;
+        }
+
+        .cookie-option span {
+            font-size: 0.72rem;
+            color: var(--color-text-muted);
+            line-height: 1.4;
+        }
+
+        /* Newsletter DOI Hint */
+        .newsletter__doi-hint {
+            font-size: 0.72rem;
+            color: var(--color-text-muted);
+            margin-top: var(--space-sm);
+            line-height: 1.5;
+        }
+
+        .newsletter__doi-note {
+            font-size: 0.85rem;
+            margin-top: var(--space-sm);
+        }
+
+        @media (max-width: 768px) {
+            .cookie-banner__content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cookie-banner__actions {
+                width: 100%;
+            }
+
+            .cookie-banner__details {
+                flex-direction: column;
+            }
+
+            .cookie-option {
+                min-width: 100%;
+            }
+        }
+    </style>
 
     <script src="js/affiliate.js"></script>
     <script src="js/avatars.js"></script>
@@ -879,6 +1058,63 @@
             if (carouselContainer && typeof AvatarSystem !== 'undefined') {
                 carouselContainer.innerHTML = AvatarSystem.renderAvatarCarousel();
             }
+
+            // === Cookie Consent Banner ===
+            const banner = document.getElementById('cookie-banner');
+            const details = document.getElementById('cookie-details');
+            const COOKIE_KEY = 'luxuryforher_cookie_consent';
+
+            function getConsent() {
+                try { return JSON.parse(localStorage.getItem(COOKIE_KEY)); } catch(e) { return null; }
+            }
+
+            function setConsent(consent) {
+                try { localStorage.setItem(COOKIE_KEY, JSON.stringify(consent)); } catch(e) {}
+                if (banner) banner.hidden = true;
+                // Activate/deactivate tracking based on consent
+                if (consent.analytics && typeof gtag === 'function') {
+                    gtag('consent', 'update', { analytics_storage: 'granted' });
+                }
+                if (consent.marketing && typeof fbq === 'function') {
+                    fbq('consent', 'grant');
+                }
+            }
+
+            // Show banner if no consent stored
+            if (!getConsent() && banner) {
+                banner.hidden = false;
+            }
+
+            // Accept all
+            document.getElementById('cookie-accept-all')?.addEventListener('click', () => {
+                setConsent({ necessary: true, analytics: true, marketing: true, timestamp: new Date().toISOString() });
+            });
+
+            // Necessary only
+            document.getElementById('cookie-necessary-only')?.addEventListener('click', () => {
+                setConsent({ necessary: true, analytics: false, marketing: false, timestamp: new Date().toISOString() });
+            });
+
+            // Toggle details
+            document.getElementById('cookie-details-toggle')?.addEventListener('click', () => {
+                if (details) details.hidden = !details.hidden;
+            });
+
+            // Save choices
+            document.getElementById('cookie-save-choices')?.addEventListener('click', () => {
+                const analytics = document.getElementById('cookie-analytics')?.checked || false;
+                const marketing = document.getElementById('cookie-marketing')?.checked || false;
+                setConsent({ necessary: true, analytics, marketing, timestamp: new Date().toISOString() });
+            });
+
+            // Footer "Cookie-Einstellungen" link
+            document.getElementById('cookie-settings-footer')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (banner) {
+                    banner.hidden = false;
+                    banner.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         });
     </script>
 </body>
