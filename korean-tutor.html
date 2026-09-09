@@ -1,0 +1,847 @@
+<title>한국어 선생님</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+:root {
+  --ground: #EAEFF5;
+  --surface: #FFFFFF;
+  --surface-dim: #F3F6FA;
+  --primary: #2E6BA8;
+  --primary-soft: #DCEAF7;
+  --accent: #E8983E;
+  --accent-soft: #FFF3E2;
+  --success: #39A96B;
+  --success-soft: #E2F5EC;
+  --error: #D45B5B;
+  --error-soft: #FAE5E5;
+  --text: #1A2436;
+  --text-mid: #4A5A72;
+  --text-muted: #7A8A9E;
+  --border: #D0D8E4;
+  --skin: #FFE0C2;
+  --hair: #2A1508;
+  --blush: rgba(255,160,160,0.35);
+  --mouth: #C47A5A;
+  --bubble: #FFFFFF;
+  --bubble-border: #D0D8E4;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground: #131A26;
+    --surface: #1A2233;
+    --surface-dim: #1E283A;
+    --primary: #5A9DD8;
+    --primary-soft: #1A2D48;
+    --accent: #E8A04A;
+    --accent-soft: #2A2010;
+    --success: #4AC87A;
+    --success-soft: #142A1C;
+    --error: #E07070;
+    --error-soft: #2A1616;
+    --text: #E4E9F0;
+    --text-mid: #A0AEBC;
+    --text-muted: #6A7A90;
+    --border: #2A3448;
+    --bubble: #1E283A;
+    --bubble-border: #2A3448;
+  }
+}
+:root[data-theme="dark"]{
+  --ground: #131A26;
+  --surface: #1A2233;
+  --surface-dim: #1E283A;
+  --primary: #5A9DD8;
+  --primary-soft: #1A2D48;
+  --accent: #E8A04A;
+  --accent-soft: #2A2010;
+  --success: #4AC87A;
+  --success-soft: #142A1C;
+  --error: #E07070;
+  --error-soft: #2A1616;
+  --text: #E4E9F0;
+  --text-mid: #A0AEBC;
+  --text-muted: #6A7A90;
+  --border: #2A3448;
+  --bubble: #1E283A;
+  --bubble-border: #2A3448;
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--ground);color:var(--text);font-family:'Nunito',system-ui,sans-serif;max-width:460px;margin:0 auto;padding:0 16px 100px;min-height:100vh}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+
+/* Top bar */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 0 8px}
+.topbar h1{font-size:1.15rem;font-weight:700;color:var(--text)}
+.topbar h1 span{color:var(--primary)}
+.score-pill{display:flex;align-items:center;gap:6px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:20px;padding:4px 12px;font-size:.82rem;font-weight:700;color:var(--accent)}
+
+/* Mode tabs */
+.tabs{display:flex;gap:6px;margin:4px 0 16px}
+.tab{flex:1;padding:10px 4px;border:2px solid var(--border);border-radius:12px;background:var(--surface);text-align:center;font:inherit;font-size:.78rem;font-weight:600;color:var(--text-mid);cursor:pointer;transition:.2s}
+.tab.active{border-color:var(--primary);background:var(--primary-soft);color:var(--primary)}
+.tab .ico{font-size:1.3rem;display:block;margin-bottom:2px}
+
+/* Avatar area */
+.avatar-area{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+.avatar-wrap{position:relative;width:140px;height:160px}
+.avatar-wrap svg{width:100%;height:100%}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.avatar-wrap.speaking svg{animation:bob .6s ease-in-out infinite}
+
+/* Speech bubble */
+.bubble{position:relative;background:var(--bubble);border:1.5px solid var(--bubble-border);border-radius:16px;padding:12px 16px;margin:8px 0 16px;text-align:center;font-size:.92rem;line-height:1.5;color:var(--text);min-height:48px}
+.bubble::before{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:14px;height:14px;background:var(--bubble);border-left:1.5px solid var(--bubble-border);border-top:1.5px solid var(--bubble-border);transform:translateX(-50%) rotate(45deg)}
+.bubble .korean-big{font-family:'Noto Serif KR',serif;font-size:2.2rem;font-weight:700;display:block;margin:6px 0 4px;line-height:1.3}
+.bubble .roman{font-size:.85rem;color:var(--text-muted);margin-bottom:4px}
+.bubble .english{font-size:1rem;color:var(--text-mid);font-weight:600}
+
+/* Interaction area */
+.interact{min-height:180px;display:flex;flex-direction:column;align-items:center;gap:12px}
+
+/* Multiple choice buttons */
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.choice-btn{padding:14px 10px;border:2px solid var(--border);border-radius:12px;background:var(--surface);font:inherit;font-size:.95rem;font-weight:600;color:var(--text);cursor:pointer;transition:.15s;text-align:center}
+.choice-btn:hover{border-color:var(--primary);background:var(--primary-soft)}
+.choice-btn.correct{border-color:var(--success);background:var(--success-soft);color:var(--success)}
+.choice-btn.wrong{border-color:var(--error);background:var(--error-soft);color:var(--error)}
+.choice-btn:disabled{cursor:default;opacity:.85}
+
+/* Mic button */
+.mic-wrap{display:flex;flex-direction:column;align-items:center;gap:8px}
+.mic-btn{width:72px;height:72px;border-radius:50%;border:3px solid var(--primary);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.8rem;transition:.2s;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.mic-btn:hover{background:var(--primary-soft);transform:scale(1.05)}
+.mic-btn.recording{border-color:var(--error);background:var(--error-soft);animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(212,91,91,.3)}50%{box-shadow:0 0 0 14px rgba(212,91,91,0)}}
+.mic-label{font-size:.8rem;color:var(--text-muted);font-weight:600}
+
+/* Result display */
+.result{text-align:center;padding:14px;border-radius:14px;width:100%;font-weight:700}
+.result.perfect{background:var(--success-soft);color:var(--success)}
+.result.good{background:var(--success-soft);color:var(--success)}
+.result.close{background:var(--accent-soft);color:var(--accent)}
+.result.wrong{background:var(--error-soft);color:var(--error)}
+.result .big{font-size:1.6rem;display:block;margin-bottom:4px}
+.result .detail{font-size:.85rem;font-weight:600;opacity:.8}
+
+/* Next button */
+.next-btn{padding:12px 32px;border:none;border-radius:12px;background:var(--primary);color:white;font:inherit;font-size:1rem;font-weight:700;cursor:pointer;transition:.15s;margin-top:8px}
+.next-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* Chat mode */
+.chat-area{width:100%;display:flex;flex-direction:column;gap:8px}
+.chat-messages{display:flex;flex-direction:column;gap:8px;max-height:320px;overflow-y:auto;padding:4px 0}
+.chat-msg{padding:10px 14px;border-radius:14px;max-width:85%;font-size:.9rem;line-height:1.5;word-wrap:break-word}
+.chat-msg.tutor{background:var(--surface);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:4px}
+.chat-msg.tutor .kor{font-family:'Noto Serif KR',serif;font-weight:700;font-size:1.05rem}
+.chat-msg.tutor .rom{font-size:.78rem;color:var(--text-muted)}
+.chat-msg.tutor .trans{font-size:.82rem;color:var(--text-mid);font-style:italic;margin-top:2px}
+.chat-msg.user{background:var(--primary);color:white;align-self:flex-end;border-bottom-right-radius:4px}
+.chat-input-wrap{display:flex;gap:8px;margin-top:4px}
+.chat-input{flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:12px;background:var(--surface);font:inherit;font-size:.9rem;color:var(--text);outline:none}
+.chat-input:focus{border-color:var(--primary)}
+.chat-send{padding:10px 16px;border:none;border-radius:12px;background:var(--primary);color:white;font:inherit;font-weight:700;cursor:pointer;font-size:.9rem}
+.chat-send:disabled{opacity:.5;cursor:default}
+.chat-topic-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.topic-chip{padding:6px 12px;border:1.5px solid var(--border);border-radius:20px;background:var(--surface);font:inherit;font-size:.78rem;font-weight:600;color:var(--text-mid);cursor:pointer;transition:.15s}
+.topic-chip:hover,.topic-chip.active{border-color:var(--primary);background:var(--primary-soft);color:var(--primary)}
+
+/* Thinking indicator */
+.thinking{display:flex;gap:4px;padding:8px 14px;align-self:flex-start}
+.thinking span{width:8px;height:8px;border-radius:50%;background:var(--text-muted);animation:dots 1.2s ease-in-out infinite}
+.thinking span:nth-child(2){animation-delay:.2s}
+.thinking span:nth-child(3){animation-delay:.4s}
+@keyframes dots{0%,80%,100%{opacity:.3;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+
+/* Confetti */
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(120px) rotate(720deg);opacity:0}}
+.confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99}
+.confetti i{position:absolute;width:8px;height:8px;border-radius:2px;animation:confetti-fall 1.5s ease-out forwards}
+
+/* Category filter for practice */
+.cat-filter{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.cat-chip{padding:4px 10px;border:1.5px solid var(--border);border-radius:16px;background:var(--surface);font:inherit;font-size:.72rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:.15s}
+.cat-chip:hover,.cat-chip.active{border-color:var(--primary);background:var(--primary-soft);color:var(--primary)}
+
+/* No speech recognition notice */
+.notice{padding:12px;border-radius:10px;background:var(--accent-soft);border:1px solid var(--accent);color:var(--accent);font-size:.82rem;text-align:center;font-weight:600}
+
+/* Bottom nav */
+.bnav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--surface);border-top:1px solid var(--border);z-index:10;max-width:460px;margin:0 auto}
+.bnav button{flex:1;padding:10px 4px 8px;border:none;background:none;font:inherit;font-size:.68rem;font-weight:600;color:var(--text-muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:.15s}
+.bnav button .ico{font-size:1.3rem}
+.bnav button.active{color:var(--primary)}
+
+/* Section visibility */
+.section{display:none}
+.section.visible{display:block}
+
+/* Speak hint */
+.speak-hint{font-size:.82rem;color:var(--text-muted);text-align:center;margin-top:4px}
+.speak-hint .kor-hint{font-family:'Noto Serif KR',serif;font-weight:700;color:var(--text);font-size:1rem}
+
+/* Audio play button inline */
+.play-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border:1.5px solid var(--primary);border-radius:20px;background:var(--primary-soft);color:var(--primary);font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;margin:6px 0}
+.play-btn:hover{background:var(--primary);color:white}
+</style>
+
+<!-- Top bar -->
+<div class="topbar">
+  <h1>🎓 <span>한국어</span> 선생님</h1>
+  <div class="score-pill">⭐ <span id="scoreNum">0</span></div>
+</div>
+
+<!-- Bottom navigation -->
+<nav class="bnav">
+  <button class="active" onclick="showSection('listen')"><span class="ico">👂</span>듣기</button>
+  <button onclick="showSection('speak')"><span class="ico">🎤</span>말하기</button>
+  <button onclick="showSection('repeat')"><span class="ico">🔁</span>따라하기</button>
+  <button onclick="showSection('chat')"><span class="ico">💬</span>대화</button>
+</nav>
+
+<!-- Listen mode -->
+<div id="sec-listen" class="section visible">
+  <div class="cat-filter" id="catFilter1"></div>
+  <div class="avatar-area">
+    <div class="avatar-wrap" id="av1">
+      <svg viewBox="0 0 160 180">
+        <ellipse cx="80" cy="175" rx="38" ry="5" fill="var(--border)" opacity=".4"/>
+        <rect x="52" y="128" rx="18" ry="18" width="56" height="44" fill="var(--primary)"/>
+        <rect x="70" y="118" width="20" height="16" rx="4" fill="var(--skin)"/>
+        <circle cx="80" cy="72" r="50" fill="var(--skin)"/>
+        <ellipse cx="80" cy="36" rx="52" ry="30" fill="var(--hair)"/>
+        <rect x="28" y="30" width="104" height="22" rx="6" fill="var(--hair)"/>
+        <path d="M38,52 Q42,38 56,34 Q48,46 50,56Z" fill="var(--hair)"/>
+        <path d="M122,52 Q118,38 104,34 Q112,46 110,56Z" fill="var(--hair)"/>
+        <circle cx="55" cy="82" r="9" fill="var(--blush)"/>
+        <circle cx="105" cy="82" r="9" fill="var(--blush)"/>
+        <g class="eyes-norm"><circle cx="64" cy="68" r="5.5" fill="var(--hair)"/><circle cx="96" cy="68" r="5.5" fill="var(--hair)"/><circle cx="66" cy="66" r="1.8" fill="white"/><circle cx="98" cy="66" r="1.8" fill="white"/></g>
+        <g class="eyes-happy" hidden><path d="M54,68 Q64,58 74,68" stroke="var(--hair)" fill="none" stroke-width="2.8" stroke-linecap="round"/><path d="M86,68 Q96,58 106,68" stroke="var(--hair)" fill="none" stroke-width="2.8" stroke-linecap="round"/></g>
+        <path class="m-smile" d="M70,92 Q80,101 90,92" stroke="var(--mouth)" fill="none" stroke-width="2.2" stroke-linecap="round"/>
+        <ellipse class="m-speak" cx="80" cy="94" rx="7" ry="5.5" fill="var(--mouth)" hidden/>
+        <path class="m-happy" d="M64,89 Q80,106 96,89" stroke="var(--mouth)" fill="white" stroke-width="2.2" stroke-linecap="round" hidden/>
+      </svg>
+    </div>
+  </div>
+  <div class="bubble" id="bubble1">
+    <span>안녕하세요! 👋</span><br>
+    <span style="font-size:.85rem;color:var(--text-mid)">Tippe auf ▶️ um das Wort zu hören, dann wähle die richtige Bedeutung!</span>
+  </div>
+  <div class="interact" id="inter1">
+    <button class="play-btn" id="playBtn1" onclick="playCurrentWord('listen')">🔊 Anhören</button>
+    <div class="choices" id="choices1"></div>
+  </div>
+</div>
+
+<!-- Speak mode -->
+<div id="sec-speak" class="section">
+  <div class="cat-filter" id="catFilter2"></div>
+  <div class="avatar-area">
+    <div class="avatar-wrap" id="av2">
+      <svg viewBox="0 0 160 180">
+        <ellipse cx="80" cy="175" rx="38" ry="5" fill="var(--border)" opacity=".4"/>
+        <rect x="52" y="128" rx="18" ry="18" width="56" height="44" fill="var(--primary)"/>
+        <rect x="70" y="118" width="20" height="16" rx="4" fill="var(--skin)"/>
+        <circle cx="80" cy="72" r="50" fill="var(--skin)"/>
+        <ellipse cx="80" cy="36" rx="52" ry="30" fill="var(--hair)"/>
+        <rect x="28" y="30" width="104" height="22" rx="6" fill="var(--hair)"/>
+        <path d="M38,52 Q42,38 56,34 Q48,46 50,56Z" fill="var(--hair)"/>
+        <path d="M122,52 Q118,38 104,34 Q112,46 110,56Z" fill="var(--hair)"/>
+        <circle cx="55" cy="82" r="9" fill="var(--blush)"/>
+        <circle cx="105" cy="82" r="9" fill="var(--blush)"/>
+        <g class="eyes-norm"><circle cx="64" cy="68" r="5.5" fill="var(--hair)"/><circle cx="96" cy="68" r="5.5" fill="var(--hair)"/><circle cx="66" cy="66" r="1.8" fill="white"/><circle cx="98" cy="66" r="1.8" fill="white"/></g>
+        <g class="eyes-happy" hidden><path d="M54,68 Q64,58 74,68" stroke="var(--hair)" fill="none" stroke-width="2.8" stroke-linecap="round"/><path d="M86,68 Q96,58 106,68" stroke="var(--hair)" fill="none" stroke-width="2.8" stroke-linecap="round"/></g>
+        <g class="eyes-listen" hidden><circle cx="64" cy="68" r="7" fill="var(--hair)"/><circle cx="96" cy="68" r="7" fill="var(--hair)"/><circle cx="66.5" cy="65.5" r="2.5" fill="white"/><circle cx="98.5" cy="65.5" r="2.5" fill="white"/></g>
+        <path class="m-smile" d="M70,92 Q80,101 90,92" stroke="var(--mouth)" fill="none" stroke-width="2.2" stroke-linecap="round"/>
+        <ellipse class="m-speak" cx="80" cy="94" rx="7" ry="5.5" fill="var(--mouth)" hidden/>
+        <path class="m-happy" d="M64,89 Q80,106 96,89" stroke="var(--mouth)" fill="white" stroke-width="2.2" stroke-linecap="round" hidden/>
+      </svg>
+    </div>
+  </div>
+  <div class="bubble" id="bubble2">Sag mir das koreanische Wort! 🎤</div>
+  <div class="interact" id="inter2"></div>
+</div>
+
+<!-- Repeat mode -->
+<div id="sec-repeat" class="section">
+  <div class="cat-filter" id="catFilter3"></div>
+  <div class="avatar-area">
+    <div class="avatar-wrap" id="av3">
+      <svg viewBox="0 0 160 180">
+        <ellipse cx="80" cy="175" rx="38" ry="5" fill="var(--border)" opacity=".4"/>
+        <rect x="52" y="128" rx="18" ry="18" width="56" height="44" fill="var(--primary)"/>
+        <rect x="70" y="118" width="20" height="16" rx="4" fill="var(--skin)"/>
+        <circle cx="80" cy="72" r="50" fill="var(--skin)"/>
+        <ellipse cx="80" cy="36" rx="52" ry="30" fill="var(--hair)"/>
+        <rect x="28" y="30" width="104" height="22" rx="6" fill="var(--hair)"/>
+        <path d="M38,52 Q42,38 56,34 Q48,46 50,56Z" fill="var(--hair)"/>
+        <path d="M122,52 Q118,38 104,34 Q112,46 110,56Z" fill="var(--hair)"/>
+        <circle cx="55" cy="82" r="9" fill="var(--blush)"/>
+        <circle cx="105" cy="82" r="9" fill="var(--blush)"/>
+        <g class="eyes-norm"><circle cx="64" cy="68" r="5.5" fill="var(--hair)"/><circle cx="96" cy="68" r="5.5" fill="var(--hair)"/><circle cx="66" cy="66" r="1.8" fill="white"/><circle cx="98" cy="66" r="1.8" fill="white"/></g>
+        <g class="eyes-happy" hidden><path d="M54,68 Q64,58 74,68" stroke="var(--hair)" fill="none" stroke-width="2.8" stroke-linecap="round"/><path d="M86,68 Q96,58 106,68" stroke="var(--hair)" fill="none" stroke-width="2.8" stroke-linecap="round"/></g>
+        <g class="eyes-listen" hidden><circle cx="64" cy="68" r="7" fill="var(--hair)"/><circle cx="96" cy="68" r="7" fill="var(--hair)"/><circle cx="66.5" cy="65.5" r="2.5" fill="white"/><circle cx="98.5" cy="65.5" r="2.5" fill="white"/></g>
+        <path class="m-smile" d="M70,92 Q80,101 90,92" stroke="var(--mouth)" fill="none" stroke-width="2.2" stroke-linecap="round"/>
+        <ellipse class="m-speak" cx="80" cy="94" rx="7" ry="5.5" fill="var(--mouth)" hidden/>
+        <path class="m-happy" d="M64,89 Q80,106 96,89" stroke="var(--mouth)" fill="white" stroke-width="2.2" stroke-linecap="round" hidden/>
+      </svg>
+    </div>
+  </div>
+  <div class="bubble" id="bubble3">Hör zu und sprich nach! 🔁</div>
+  <div class="interact" id="inter3"></div>
+</div>
+
+<!-- Chat mode -->
+<div id="sec-chat" class="section">
+  <div class="avatar-area" style="padding:6px 0">
+    <div class="avatar-wrap" id="av4" style="width:100px;height:115px">
+      <svg viewBox="0 0 160 180">
+        <rect x="52" y="128" rx="18" ry="18" width="56" height="44" fill="var(--primary)"/>
+        <rect x="70" y="118" width="20" height="16" rx="4" fill="var(--skin)"/>
+        <circle cx="80" cy="72" r="50" fill="var(--skin)"/>
+        <ellipse cx="80" cy="36" rx="52" ry="30" fill="var(--hair)"/>
+        <rect x="28" y="30" width="104" height="22" rx="6" fill="var(--hair)"/>
+        <circle cx="55" cy="82" r="9" fill="var(--blush)"/>
+        <circle cx="105" cy="82" r="9" fill="var(--blush)"/>
+        <g class="eyes-norm"><circle cx="64" cy="68" r="5.5" fill="var(--hair)"/><circle cx="96" cy="68" r="5.5" fill="var(--hair)"/><circle cx="66" cy="66" r="1.8" fill="white"/><circle cx="98" cy="66" r="1.8" fill="white"/></g>
+        <path class="m-smile" d="M70,92 Q80,101 90,92" stroke="var(--mouth)" fill="none" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+  <div class="chat-topic-chips" id="topicChips">
+    <button class="topic-chip active" data-topic="greet">👋 Begrüßung</button>
+    <button class="topic-chip" data-topic="friends">🧑‍🤝‍🧑 Freunde</button>
+    <button class="topic-chip" data-topic="food">🍜 Essen</button>
+    <button class="topic-chip" data-topic="shopping">🛍️ Einkaufen</button>
+    <button class="topic-chip" data-topic="family">👨‍👩‍👧 Familie</button>
+    <button class="topic-chip" data-topic="free">✨ Frei</button>
+  </div>
+  <div class="chat-area">
+    <div class="chat-messages" id="chatMsgs"></div>
+    <div class="chat-input-wrap">
+      <input class="chat-input" id="chatIn" placeholder="Schreib auf Deutsch oder Koreanisch..." autocomplete="off">
+      <button class="chat-send" id="chatSend" onclick="sendChat()">→</button>
+    </div>
+  </div>
+</div>
+
+<div id="confettiBox" class="confetti"></div>
+
+<script>
+/* ---- State ---- */
+var allCards = [];
+var filteredCards = [];
+var currentCard = null;
+var usedIndices = [];
+var score = 0;
+var currentSection = 'listen';
+var selectedCat = 'Alle';
+var chatTurns = [];
+var chatTopic = 'greet';
+var sample = null;
+var db = null;
+var hasSR = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+
+/* ---- Helpers ---- */
+function $(id){ return document.getElementById(id); }
+function shuffle(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a; }
+
+function speakKorean(text, cb){
+  if(!text||!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='ko-KR'; u.rate=0.8;
+  var voices=window.speechSynthesis.getVoices();
+  var kv=voices.find(function(v){return v.lang.indexOf('ko')===0;});
+  if(kv) u.voice=kv;
+  if(cb) u.onend=cb;
+  window.speechSynthesis.speak(u);
+}
+
+function setExpression(avId, expr){
+  var wrap=document.querySelector('#'+avId);
+  if(!wrap) return;
+  var svg=wrap.querySelector('svg');
+  svg.querySelectorAll('.eyes-norm,.eyes-happy,.eyes-listen').forEach(function(g){g.hidden=true;});
+  svg.querySelectorAll('.m-smile,.m-speak,.m-happy').forEach(function(e){e.hidden=true;});
+  wrap.classList.remove('speaking');
+  if(expr==='normal'){
+    svg.querySelector('.eyes-norm').hidden=false;
+    svg.querySelector('.m-smile').hidden=false;
+  } else if(expr==='happy'){
+    svg.querySelector('.eyes-happy').hidden=false;
+    svg.querySelector('.m-happy').hidden=false;
+  } else if(expr==='speaking'){
+    svg.querySelector('.eyes-norm').hidden=false;
+    svg.querySelector('.m-speak').hidden=false;
+    wrap.classList.add('speaking');
+  } else if(expr==='listening'){
+    var el=svg.querySelector('.eyes-listen');
+    if(el){el.hidden=false;}else{svg.querySelector('.eyes-norm').hidden=false;}
+    svg.querySelector('.m-smile').hidden=false;
+  }
+}
+
+function addScore(n){
+  score+=n;
+  $('scoreNum').textContent=score;
+  try{localStorage.setItem('kt-score',score);}catch(e){}
+}
+
+function showConfetti(){
+  var box=$('confettiBox');
+  box.innerHTML='';
+  var colors=['#F0A030','#3DAA6D','#D4A0D0','#5A9DD8','#E07070'];
+  for(var i=0;i<30;i++){
+    var s=document.createElement('i');
+    s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*40+'%;background:'+colors[i%5]+';animation-delay:'+Math.random()*0.5+'s;animation-duration:'+(1+Math.random())+'s;width:'+(6+Math.random()*6)+'px;height:'+(6+Math.random()*6)+'px;';
+    box.appendChild(s);
+  }
+  setTimeout(function(){box.innerHTML='';},2500);
+}
+
+/* ---- Category filters ---- */
+function buildCatFilters(){
+  var cats=['Alle'];
+  var seen={};
+  allCards.forEach(function(c){if(!seen[c.category]){seen[c.category]=1;cats.push(c.category);}});
+  ['catFilter1','catFilter2','catFilter3'].forEach(function(id){
+    var el=$(id);
+    el.innerHTML='';
+    cats.forEach(function(cat){
+      var btn=document.createElement('button');
+      btn.className='cat-chip'+(cat===selectedCat?' active':'');
+      btn.textContent=cat;
+      btn.onclick=function(){
+        selectedCat=cat;
+        el.querySelectorAll('.cat-chip').forEach(function(b){b.classList.toggle('active',b.textContent===cat);});
+        filterCards();
+        nextWord(currentSection);
+      };
+      el.appendChild(btn);
+    });
+  });
+}
+
+function filterCards(){
+  if(selectedCat==='Alle'){
+    filteredCards=allCards.filter(function(c){return c.english.indexOf('syllable')===-1;});
+  } else {
+    filteredCards=allCards.filter(function(c){return c.category===selectedCat && c.english.indexOf('syllable')===-1;});
+  }
+  if(!filteredCards.length) filteredCards=allCards.slice();
+  usedIndices=[];
+}
+
+/* ---- Section switching ---- */
+function showSection(name){
+  currentSection=name;
+  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('visible');});
+  $('sec-'+name).classList.add('visible');
+  document.querySelectorAll('.bnav button').forEach(function(b,i){
+    b.classList.toggle('active',['listen','speak','repeat','chat'][i]===name);
+  });
+  if(name!=='chat') nextWord(name);
+}
+
+/* ---- Pick next word ---- */
+function nextWord(mode){
+  if(!filteredCards.length) return;
+  if(usedIndices.length>=filteredCards.length) usedIndices=[];
+  var idx;
+  do{ idx=Math.floor(Math.random()*filteredCards.length); }while(usedIndices.indexOf(idx)!==-1);
+  usedIndices.push(idx);
+  currentCard=filteredCards[idx];
+  if(mode==='listen') setupListen();
+  else if(mode==='speak') setupSpeak();
+  else if(mode==='repeat') setupRepeat();
+}
+
+/* ---- LISTEN MODE ---- */
+function setupListen(){
+  var av='av1';
+  setExpression(av,'normal');
+  $('bubble1').innerHTML='<span style="font-size:.85rem;color:var(--text-mid)">Hör dir das Wort an und wähle die richtige Bedeutung!</span>';
+  $('playBtn1').hidden=false;
+  var choices=$('choices1');
+  choices.innerHTML='';
+  var correct=currentCard.english;
+  var opts=[correct];
+  var pool=allCards.filter(function(c){return c.english!==correct;});
+  shuffle(pool);
+  for(var i=0;i<3&&i<pool.length;i++) opts.push(pool[i].english);
+  shuffle(opts);
+  opts.forEach(function(opt){
+    var btn=document.createElement('button');
+    btn.className='choice-btn';
+    btn.textContent=opt;
+    btn.onclick=function(){
+      choices.querySelectorAll('.choice-btn').forEach(function(b){
+        b.disabled=true;
+        if(b.textContent===correct) b.classList.add('correct');
+      });
+      if(opt===correct){
+        btn.classList.add('correct');
+        setExpression(av,'happy');
+        addScore(10);
+        showConfetti();
+        setTimeout(function(){nextWord('listen');},1800);
+      } else {
+        btn.classList.add('wrong');
+        setExpression(av,'normal');
+        setTimeout(function(){nextWord('listen');},2500);
+      }
+    };
+    choices.appendChild(btn);
+  });
+}
+
+function playCurrentWord(mode){
+  if(!currentCard) return;
+  var av=mode==='listen'?'av1':mode==='speak'?'av2':'av3';
+  setExpression(av,'speaking');
+  speakKorean(currentCard.korean, function(){
+    setExpression(av,'normal');
+  });
+}
+
+/* ---- SPEAK MODE ---- */
+function setupSpeak(){
+  var av='av2';
+  setExpression(av,'normal');
+  $('bubble2').innerHTML='<span class="english" style="font-size:1.1rem">'+currentCard.english+'</span><br><span style="font-size:.82rem;color:var(--text-muted);margin-top:4px;display:inline-block">Sag es auf Koreanisch!</span>';
+  var inter=$('inter2');
+  inter.innerHTML='';
+  if(!hasSR){
+    inter.innerHTML='<div class="notice">⚠️ Spracherkennung nicht verfügbar. Bitte Chrome oder Edge verwenden.</div>';
+    addNextBtn(inter,'speak');
+    return;
+  }
+  var wrap=document.createElement('div');
+  wrap.className='mic-wrap';
+  var btn=document.createElement('button');
+  btn.className='mic-btn';
+  btn.innerHTML='🎤';
+  btn.setAttribute('aria-label','Aufnehmen');
+  var label=document.createElement('div');
+  label.className='mic-label';
+  label.textContent='Tippe zum Sprechen';
+  wrap.appendChild(btn);
+  wrap.appendChild(label);
+  inter.appendChild(wrap);
+  var hint=document.createElement('div');
+  hint.className='speak-hint';
+  hint.innerHTML='Hinweis: <span class="kor-hint">'+currentCard.korean+'</span> <span style="color:var(--text-muted)">('+currentCard.romanization+')</span>';
+  hint.hidden=true;
+  inter.appendChild(hint);
+  var hintBtn=document.createElement('button');
+  hintBtn.style.cssText='border:none;background:none;color:var(--text-muted);font:inherit;font-size:.78rem;cursor:pointer;text-decoration:underline;margin-top:4px';
+  hintBtn.textContent='💡 Hinweis zeigen';
+  hintBtn.onclick=function(){hint.hidden=false;hintBtn.hidden=true;};
+  inter.appendChild(hintBtn);
+  btn.onclick=function(){startRecognition(btn,label,av,'speak');};
+}
+
+/* ---- REPEAT MODE ---- */
+function setupRepeat(){
+  var av='av3';
+  setExpression(av,'normal');
+  $('bubble3').innerHTML='<span class="korean-big">'+currentCard.korean+'</span><span class="roman">'+currentCard.romanization+'</span><span class="english">'+currentCard.english+'</span>';
+  var inter=$('inter3');
+  inter.innerHTML='';
+  var playBtn=document.createElement('button');
+  playBtn.className='play-btn';
+  playBtn.innerHTML='🔊 Anhören';
+  playBtn.onclick=function(){playCurrentWord('repeat');};
+  inter.appendChild(playBtn);
+  if(!hasSR){
+    inter.innerHTML+='<div class="notice" style="margin-top:8px">⚠️ Spracherkennung nicht verfügbar. Bitte Chrome oder Edge verwenden.</div>';
+    addNextBtn(inter,'repeat');
+    return;
+  }
+  var wrap=document.createElement('div');
+  wrap.className='mic-wrap';
+  wrap.style.marginTop='8px';
+  var btn=document.createElement('button');
+  btn.className='mic-btn';
+  btn.innerHTML='🎤';
+  var label=document.createElement('div');
+  label.className='mic-label';
+  label.textContent='Hör zu, dann sprich nach';
+  wrap.appendChild(btn);
+  wrap.appendChild(label);
+  inter.appendChild(wrap);
+  btn.onclick=function(){startRecognition(btn,label,av,'repeat');};
+}
+
+/* ---- Speech Recognition ---- */
+function startRecognition(btn, label, avId, mode){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR) return;
+  var rec=new SR();
+  rec.lang='ko-KR';
+  rec.continuous=false;
+  rec.interimResults=false;
+  rec.maxAlternatives=5;
+  btn.classList.add('recording');
+  label.textContent='Ich höre zu...';
+  setExpression(avId,'listening');
+  rec.onresult=function(ev){
+    btn.classList.remove('recording');
+    var results=ev.results[0];
+    var best=null;
+    var bestScore=0;
+    for(var i=0;i<results.length;i++){
+      var t=results[i].transcript.replace(/\s/g,'');
+      var expected=currentCard.korean.replace(/\s/g,'');
+      if(t===expected){best=t;bestScore=3;break;}
+      var s=similarity(t,expected);
+      if(s>bestScore){bestScore=s;best=t;}
+    }
+    showPronResult(best||results[0].transcript, bestScore, avId, mode);
+  };
+  rec.onerror=function(ev){
+    btn.classList.remove('recording');
+    label.textContent='Fehler: '+ev.error+'. Nochmal versuchen!';
+    setExpression(avId,'normal');
+  };
+  rec.onend=function(){
+    btn.classList.remove('recording');
+  };
+  rec.start();
+}
+
+function similarity(a,b){
+  if(a===b) return 3;
+  if(a.indexOf(b)!==-1||b.indexOf(a)!==-1) return 2;
+  var longer=a.length>b.length?a:b;
+  var shorter=a.length>b.length?b:a;
+  if(longer.length===0) return 0;
+  var costs=[];
+  for(var i=0;i<=longer.length;i++){
+    var lastVal=i;
+    for(var j=0;j<=shorter.length;j++){
+      if(i===0) costs[j]=j;
+      else if(j>0){
+        var newVal=costs[j-1];
+        if(longer.charAt(i-1)!==shorter.charAt(j-1)) newVal=Math.min(Math.min(newVal,lastVal),costs[j])+1;
+        costs[j-1]=lastVal;
+        lastVal=newVal;
+      }
+    }
+    if(i>0) costs[shorter.length]=lastVal;
+  }
+  var dist=costs[shorter.length];
+  var ratio=(longer.length-dist)/longer.length;
+  if(ratio>0.8) return 2;
+  if(ratio>0.5) return 1;
+  return 0;
+}
+
+function showPronResult(spoken, scoreVal, avId, mode){
+  var inter=$(mode==='speak'?'inter2':'inter3');
+  var result=document.createElement('div');
+  result.className='result';
+  if(scoreVal>=3){
+    result.classList.add('perfect');
+    result.innerHTML='<span class="big">🌟 완벽해요!</span><span class="detail">Perfekte Aussprache!</span>';
+    setExpression(avId,'happy');
+    addScore(15);
+    showConfetti();
+  } else if(scoreVal>=2){
+    result.classList.add('good');
+    result.innerHTML='<span class="big">👏 잘했어요!</span><span class="detail">Gut gemacht! Du hast "'+spoken+'" gesagt.</span>';
+    setExpression(avId,'happy');
+    addScore(10);
+  } else if(scoreVal>=1){
+    result.classList.add('close');
+    result.innerHTML='<span class="big">🤔 거의!</span><span class="detail">Fast! Du: "'+spoken+'" → Richtig: "'+currentCard.korean+'" ('+currentCard.romanization+')</span>';
+    setExpression(avId,'normal');
+    addScore(3);
+  } else {
+    result.classList.add('wrong');
+    result.innerHTML='<span class="big">다시! 💪</span><span class="detail">Nochmal! Du: "'+spoken+'" → Richtig: "'+currentCard.korean+'" ('+currentCard.romanization+')</span>';
+    setExpression(avId,'normal');
+  }
+  inter.appendChild(result);
+  addNextBtn(inter, mode);
+}
+
+function addNextBtn(parent, mode){
+  var btn=document.createElement('button');
+  btn.className='next-btn';
+  btn.textContent='Nächstes Wort →';
+  btn.onclick=function(){nextWord(mode);};
+  parent.appendChild(btn);
+}
+
+/* ---- CHAT MODE ---- */
+var topicPrompts={
+  greet: 'Begrüßung und sich vorstellen auf Koreanisch (안녕하세요, 저는..., 만나서 반갑습니다 etc.)',
+  friends: 'Alltägliche Gespräche unter Freunden (Hobbys, Wochenende, Pläne etc.)',
+  food: 'Über Essen und Trinken sprechen, im Restaurant bestellen',
+  shopping: 'Im Laden einkaufen, nach dem Preis fragen (얼마예요?, 이거 주세요 etc.)',
+  family: 'Über die Familie sprechen (가족 소개)',
+  free: 'Freies Gespräch auf Koreanisch - antworte natürlich auf das Thema des Lernenden'
+};
+
+function initChat(){
+  var chips=$('topicChips').querySelectorAll('.topic-chip');
+  chips.forEach(function(chip){
+    chip.onclick=function(){
+      chips.forEach(function(c){c.classList.remove('active');});
+      chip.classList.add('active');
+      chatTopic=chip.dataset.topic;
+      chatTurns=[];
+      $('chatMsgs').innerHTML='';
+      startChatTopic();
+    };
+  });
+  $('chatIn').addEventListener('keydown',function(e){
+    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat();}
+  });
+}
+
+function startChatTopic(){
+  if(!sample){
+    addChatMsg('tutor','<span class="kor">죄송합니다</span><br><span class="trans">Chat ist leider nicht verfügbar. Bitte später versuchen.</span>');
+    return;
+  }
+  addChatMsg('tutor','<span class="kor">안녕하세요! 🎓</span><br><span class="trans">Lass uns auf Koreanisch üben! Schreib einfach auf Deutsch und ich antworte auf Koreanisch mit Übersetzung.</span>');
+}
+
+function addChatMsg(who, html){
+  var msgs=$('chatMsgs');
+  var div=document.createElement('div');
+  div.className='chat-msg '+who;
+  div.innerHTML=html;
+  msgs.appendChild(div);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function showThinking(){
+  var msgs=$('chatMsgs');
+  var div=document.createElement('div');
+  div.className='thinking';
+  div.id='thinkDots';
+  div.innerHTML='<span></span><span></span><span></span>';
+  msgs.appendChild(div);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function hideThinking(){
+  var el=$('thinkDots');
+  if(el) el.remove();
+}
+
+async function sendChat(){
+  var input=$('chatIn');
+  var text=input.value.trim();
+  if(!text||!sample) return;
+  input.value='';
+  $('chatSend').disabled=true;
+  addChatMsg('user',text);
+
+  var vocabSample=allCards.slice(0,40).map(function(c){return c.korean+' ('+c.romanization+') = '+c.english;}).join(', ');
+
+  var sysPrompt='Du bist 민지 (Minji), eine freundliche koreanische Sprachlehrerin. '+
+    'Der Lernende übt gerade: '+topicPrompts[chatTopic]+'. '+
+    'REGELN: '+
+    '1) Antworte IMMER auf Koreanisch mit Romanisierung in Klammern und deutscher Übersetzung darunter. '+
+    '2) Halte deine Antworten kurz (1-3 Sätze auf Koreanisch). '+
+    '3) Verwende einfaches Koreanisch für Anfänger (해요 Höflichkeitsform). '+
+    '4) Korrigiere sanft wenn der Lernende Fehler macht. '+
+    '5) Stelle Folgefragen um das Gespräch fortzusetzen. '+
+    '6) Format: Koreanisch\\n(Romanisierung)\\nDeutsche Übersetzung\\n\\n[Eventuell Tipp oder Erklärung]. '+
+    'Einige Vokabeln die der Lernende kennt: '+vocabSample;
+
+  var turns=[{role:'user',content:sysPrompt}];
+  chatTurns.forEach(function(t){turns.push(t);});
+  turns.push({role:'user',content:text});
+
+  if(turns.length>20){
+    turns=[turns[0]].concat(turns.slice(-10));
+  }
+
+  showThinking();
+
+  try{
+    var ctl=new AbortController();
+    var result=await sample(turns,{
+      modelTier:'quick',
+      cache:false,
+      signal:ctl.signal
+    });
+    hideThinking();
+    chatTurns.push({role:'user',content:text});
+    chatTurns.push({role:'assistant',content:result.text});
+    var formatted=formatChatResponse(result.text);
+    addChatMsg('tutor',formatted);
+    addScore(2);
+  } catch(e){
+    hideThinking();
+    if(e.code==='not_granted'||e.code==='sampling_disabled'){
+      addChatMsg('tutor','<span class="trans">⚠️ Claude-Zugang nicht verfügbar. Bitte erlaube Claude in den Einstellungen.</span>');
+      sample=null;
+    } else if(e.code!=='cancelled'){
+      addChatMsg('tutor','<span class="trans">⚠️ Fehler: '+(e.message||'Unbekannt')+'. Versuche es nochmal!</span>');
+    }
+  }
+  $('chatSend').disabled=false;
+  $('chatIn').focus();
+}
+
+function formatChatResponse(text){
+  var lines=text.split('\n');
+  var html='';
+  var inKor=true;
+  lines.forEach(function(line){
+    line=line.trim();
+    if(!line) return;
+    if(line.match(/^[가-힯㄰-㆏\s!?.,~\-"'()0-9]+$/)&&line.length>1){
+      html+='<span class="kor">'+line+'</span><br>';
+    } else if(line.match(/^\(.*\)$/)){
+      html+='<span class="rom">'+line+'</span><br>';
+    } else {
+      html+='<span class="trans">'+line+'</span><br>';
+    }
+  });
+  return html||text;
+}
+
+/* ---- DB Loading ---- */
+async function loadCards(){
+  try{
+    db=await window.claude.use('db');
+  }catch(e){}
+  if(db){
+    db.collection('cards').orderBy('createdAt','asc').onSnapshot(function(snap){
+      allCards=snap.docs.map(function(d){return d.data;});
+      if(allCards.length>0){
+        filterCards();
+        buildCatFilters();
+        nextWord(currentSection);
+      }
+    });
+  }
+  /* Also try to init sample */
+  try{
+    sample=await window.claude.use('sample');
+  }catch(e){}
+}
+
+/* ---- Init ---- */
+(function(){
+  try{var s=localStorage.getItem('kt-score');if(s)score=parseInt(s)||0;$('scoreNum').textContent=score;}catch(e){}
+  window.speechSynthesis&&window.speechSynthesis.getVoices();
+  if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=function(){window.speechSynthesis.getVoices();};}
+  initChat();
+  if(window.claude&&window.claude.use){
+    loadCards();
+  } else {
+    /* Fallback: wait for claude */
+    var check=setInterval(function(){
+      if(window.claude&&window.claude.use){clearInterval(check);loadCards();}
+    },500);
+    setTimeout(function(){clearInterval(check);},15000);
+  }
+})();
+</script>
