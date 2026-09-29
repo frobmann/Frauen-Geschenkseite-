@@ -305,6 +305,7 @@ body{background:var(--ground);color:var(--text);font-family:'Nunito',system-ui,s
   </div>
   <div class="chat-topic-chips" id="topicChips">
     <button class="topic-chip active" data-topic="greet">👋 Begrüßung</button>
+    <button class="topic-chip" data-topic="intro">🙋 Vorstellen</button>
     <button class="topic-chip" data-topic="friends">🧑‍🤝‍🧑 Freunde</button>
     <button class="topic-chip" data-topic="food">🍜 Essen</button>
     <button class="topic-chip" data-topic="shopping">🛍️ Einkaufen</button>
@@ -721,6 +722,15 @@ function addNextBtn(parent,mode){
 
 var topicPrompts={
   greet:'Begrüßung und sich vorstellen auf Koreanisch (안녕하세요, 저는..., 만나서 반갑습니다 etc.)',
+  intro:'Sich vorstellen nach dem Muster des King Sejong Institute Lehrbuchs (세종한국어 1A, Lektion 1-2). '+
+    'Übe mit dem Lernenden eine strukturierte Selbstvorstellung: '+
+    '1) Name: 저는 [Name]이에요/예요 (이에요 nach Konsonant, 예요 nach Vokal). '+
+    '2) Beruf: 저는 [직업]이에요/예요 (학생 Student, 회사원 Büroangestellte/r, 의사 Arzt/Ärztin, 선생님 Lehrer/in, 간호사 Krankenpfleger/in, 요리사 Koch/Köchin, 기자 Journalist/in, 엔지니어 Ingenieur/in). '+
+    '3) Nationalität: 저는 [나라] 사람이에요 (독일 Deutschland, 한국 Korea, 일본 Japan, 중국 China, 미국 USA, 베트남 Vietnam, 태국 Thailand, 프랑스 Frankreich, 영국 England, 인도 Indien). '+
+    '4) Abschluss: 만나서 반갑습니다 (Freut mich Sie kennenzulernen). '+
+    'Führe den Dialog Schritt für Schritt: Frag zuerst nach dem Namen (이름이 뭐예요?), dann nach dem Beruf (직업이 뭐예요?), dann nach der Nationalität (어느 나라 사람이에요?). '+
+    'Erkläre die 이에요/예요 Regel wenn nötig. Gib immer Romanisierung und deutsche Übersetzung. '+
+    'Zeige am Ende das vollständige Vorstellungsmuster als Zusammenfassung.',
   friends:'Alltägliche Gespräche unter Freunden (Hobbys, Wochenende, Pläne etc.)',
   food:'Über Essen und Trinken sprechen, im Restaurant bestellen',
   shopping:'Im Laden einkaufen, nach dem Preis fragen (얼마예요?, 이거 주세요 etc.)',
@@ -753,6 +763,24 @@ function startChatTopic(){
   }
   if(chatTopic==='pron'){
     addChatMsg('tutor','<span class="kor">발음 연습! 🗣️</span><br><span class="trans">Aussprachetraining! Schreib ein koreanisches Wort und ich erkläre dir genau, wie du es aussprichst — mit Mundstellung, Zungenlage und ähnlichen deutschen Lauten.</span>');
+  }else if(chatTopic==='intro'){
+    addChatMsg('tutor','<span class="kor">자기소개를 해 봅시다! 🙋</span><br><span class="trans">Lass uns die Selbstvorstellung üben!</span>'+
+      '<div style="margin-top:10px;padding:12px;background:var(--card);border-radius:8px;border-left:3px solid var(--accent);font-size:0.92em;">'+
+      '<strong>📖 Sejong 1A — Vorlage:</strong><br><br>'+
+      '<span class="kor">안녕하세요.</span> <span style="color:var(--dim)">(annyeonghaseyo)</span><br>'+
+      '<span style="color:var(--sub)">Hallo.</span><br><br>'+
+      '<span class="kor">저는 [Name]이에요/예요.</span> <span style="color:var(--dim)">(jeoneun ... ieyo/yeyo)</span><br>'+
+      '<span style="color:var(--sub)">Ich bin [Name].</span><br><br>'+
+      '<span class="kor">저는 [직업]이에요/예요.</span> <span style="color:var(--dim)">(jeoneun ... ieyo/yeyo)</span><br>'+
+      '<span style="color:var(--sub)">Ich bin [Beruf].</span><br><br>'+
+      '<span class="kor">저는 [나라] 사람이에요.</span> <span style="color:var(--dim)">(jeoneun ... saram-ieyo)</span><br>'+
+      '<span style="color:var(--sub)">Ich bin [Nationalität].</span><br><br>'+
+      '<span class="kor">만나서 반갑습니다.</span> <span style="color:var(--dim)">(mannaseo bangapseumnida)</span><br>'+
+      '<span style="color:var(--sub)">Freut mich, Sie kennenzulernen.</span>'+
+      '</div>'+
+      '<div style="margin-top:8px;font-size:0.88em;color:var(--sub)">'+
+      '[TIPP: 이에요 nach Konsonant (학생<b>이에요</b>), 예요 nach Vokal (의사<b>예요</b>)]</div>'+
+      '<br><span class="trans">Fangen wir an! Wie heißt du?<br><span class="kor">이름이 뭐예요?</span> <span style="color:var(--dim)">(ireumi mwoyeyo?)</span></span>');
   }else{
     addChatMsg('tutor','<span class="kor">안녕하세요! 🎓</span><br><span class="trans">Lass uns auf Koreanisch üben! Schreib einfach auf Deutsch und ich antworte auf Koreanisch mit Übersetzung.</span>');
   }
